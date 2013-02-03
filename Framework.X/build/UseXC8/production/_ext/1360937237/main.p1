@@ -52,9 +52,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIE1bits `VS511 ~T0 @X0 0 e@3997 ]
 "214 /Applications/microchip/xc8/v1.12/include/plib/usart.h
 [v _Open1USART `(v ~T0 @X0 0 ef2`uc`ui ]
-"12 ../src/interrupts.h
+"14 ../src/interrupts.h
 [v _enable_interrupts `(v ~T0 @X0 0 ef ]
-"17 ../src/adcHelper.h
+"20 ../src/adcHelper.h
 [v _adcInit `(v ~T0 @X0 0 ef ]
 "51 ../src/messages.h
 [v _block_on_To_msgqueues `(v ~T0 @X0 0 ef ]
@@ -68,6 +68,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ToMainLow_recvmsg `(c ~T0 @X0 0 ef3`uc`*uc`*v ]
 "7 ../src/timer1_thread.h
 [v _timer1_lthread `(i ~T0 @X0 0 ef4`*S1030`i`i`*uc ]
+[s S689 :1 `uc 1 :1 `uc 1 ]
+[n S689 . . GO_NOT_DONE ]
+[s S690 :1 `uc 1 :1 `uc 1 :4 `uc 1 :2 `uc 1 ]
+[n S690 . ADON GO_nDONE CHS VCFG ]
+[s S691 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S691 . . GO_DONE CHS0 CHS1 CHS2 CHS3 VCFG0 VCFG1 ]
+[s S692 :1 `uc 1 :1 `uc 1 ]
+[n S692 . . DONE ]
+[s S693 :1 `uc 1 :1 `uc 1 ]
+[n S693 . . GO ]
+[s S694 :1 `uc 1 :1 `uc 1 ]
+[n S694 . . NOT_DONE ]
+[s S695 :1 `uc 1 :1 `uc 1 ]
+[n S695 . . nDONE ]
+[s S696 :7 `uc 1 :1 `uc 1 ]
+[n S696 . . ADCAL ]
+[s S697 :1 `uc 1 :1 `uc 1 ]
+[n S697 . . GODONE ]
+[u S688 `S689 1 `S690 1 `S691 1 `S692 1 `S693 1 `S694 1 `S695 1 `S696 1 `S697 1 ]
+[n S688 . . . . . . . . . . ]
+"10830 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+[v _ADCON0bits `VS688 ~T0 @X0 0 e@4034 ]
 "6 ../src/uart_thread.h
 [v _uart_lthread `(i ~T0 @X0 0 ef4`*S1029`i`i`*uc ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
@@ -7552,7 +7574,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;xlcd.h: 140: extern void DelayFor18TCY(void);
 [; ;xlcd.h: 141: extern void DelayPORXLCD(void);
 [; ;xlcd.h: 142: extern void DelayXLCD(void);
-[; ;adcHelper.h: 17: void adcInit();
+[; ;adcHelper.h: 20: void adcInit();
+[; ;adcHelper.h: 28: void adcIntHandler();
 [; ;stdarg.h: 7: typedef void * va_list[1];
 [; ;stdarg.h: 10: extern void * __va_start(void);
 [; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
@@ -7583,11 +7606,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 201: extern int vsscanf(const char *, const char *, va_list);
 [; ;stdio.h: 205: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 206: extern int printf(const char *, ...);
-[; ;interrupts.h: 12: void enable_interrupts(void);
-[; ;interrupts.h: 14: int in_high_int(void);
-[; ;interrupts.h: 16: int low_int_active(void);
-[; ;interrupts.h: 18: int in_low_int(void);
-[; ;interrupts.h: 21: int in_main(void);
+[; ;interrupts.h: 14: void enable_interrupts(void);
+[; ;interrupts.h: 16: int in_high_int(void);
+[; ;interrupts.h: 18: int low_int_active(void);
+[; ;interrupts.h: 20: int in_low_int(void);
+[; ;interrupts.h: 23: int in_main(void);
 [; ;messages.h: 10: typedef struct __msg {
 [; ;messages.h: 11: unsigned char full;
 [; ;messages.h: 12: unsigned char length;
@@ -8004,60 +8027,81 @@ Version 3.2 HI-TECH Software Intermediate Code
 "346
 }
 [; ;main.c: 346: };
-[; ;main.c: 347: case 30:
+[; ;main.c: 347: case 50:
 "347
 [e :U 1057 ]
+[; ;main.c: 348: {
 "348
-[e :U 1058 ]
-[; ;main.c: 348: case 31:
-[; ;main.c: 349: {
+{
 "349
-{
-[; ;main.c: 350: uart_lthread(&uthread_data, msgtype, length, msgbuffer);
-"350
-[e ( _uart_lthread (4 , , , &U _uthread_data -> _msgtype `i -> _length `i &U _msgbuffer ]
-[; ;main.c: 351: break;
+[v _adcOutput `us ~T0 @X0 1 a ]
+[; ;main.c: 349: unsigned short adcOutput = ((int)msgbuffer[1] << 8) | (int)msgbuffer[0];
+[e = _adcOutput -> | << -> *U + &U _msgbuffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _msgbuffer `ui `ux `i -> 8 `i -> *U + &U _msgbuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _msgbuffer `ui `ux `i `us ]
 "351
-[e $U 1054  ]
-"352
-}
-[; ;main.c: 352: };
-[; ;main.c: 353: default:
+[v _k `i ~T0 @X0 1 a ]
+[; ;main.c: 351: int k = adcOutput;
+[e = _k -> _adcOutput `i ]
+[; ;main.c: 353: ADCON0bits.GODONE = 1;
 "353
-[e :U 1059 ]
-[; ;main.c: 354: {
+[e = . . _ADCON0bits 8 1 -> -> 1 `i `uc ]
 "354
-{
-[; ;main.c: 356: break;
+}
+[; ;main.c: 354: };
+[; ;main.c: 355: case 30:
+"355
+[e :U 1058 ]
 "356
-[e $U 1054  ]
+[e :U 1059 ]
+[; ;main.c: 356: case 31:
+[; ;main.c: 357: {
 "357
-}
-[; ;main.c: 357: };
+{
+[; ;main.c: 358: uart_lthread(&uthread_data, msgtype, length, msgbuffer);
 "358
+[e ( _uart_lthread (4 , , , &U _uthread_data -> _msgtype `i -> _length `i &U _msgbuffer ]
+[; ;main.c: 359: break;
+"359
+[e $U 1054  ]
+"360
 }
-[; ;main.c: 358: };
+[; ;main.c: 360: };
+[; ;main.c: 361: default:
+"361
+[e :U 1060 ]
+[; ;main.c: 362: {
+"362
+{
+[; ;main.c: 364: break;
+"364
+[e $U 1054  ]
+"365
+}
+[; ;main.c: 365: };
+"366
+}
+[; ;main.c: 366: };
 [e $U 1054  ]
 "341
 [e :U 1055 ]
 [e [\ _msgtype , $ -> -> 11 `i `uc 1056
- , $ -> -> 30 `i `uc 1057
- , $ -> -> 31 `i `uc 1058
- 1059 ]
-"358
+ , $ -> -> 50 `i `uc 1057
+ , $ -> -> 30 `i `uc 1058
+ , $ -> -> 31 `i `uc 1059
+ 1060 ]
+"366
 [e :U 1054 ]
-"359
+"367
 }
 [e :U 1053 ]
-"360
+"368
 }
 [e :U 1033 ]
 "259
 [e $U 1034  ]
 [e :U 1035 ]
-[; ;main.c: 359: }
-[; ;main.c: 360: }
-[; ;main.c: 362: }
-"362
+[; ;main.c: 367: }
+[; ;main.c: 368: }
+[; ;main.c: 370: }
+"370
 [e :UE 1032 ]
 }

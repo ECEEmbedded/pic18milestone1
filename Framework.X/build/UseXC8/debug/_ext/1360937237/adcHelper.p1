@@ -1,4 +1,70 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"6789 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+[s S183 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S183 . PCFG0 PCFG1 PCFG2 PCFG3 PCFG4 ]
+[u S182 `S183 1 ]
+[n S182 . . ]
+"2543
+[v _ANCON0bits `VS182 ~T0 @X0 0 e@3912 ]
+[s S689 :1 `uc 1 :1 `uc 1 ]
+[n S689 . . GO_NOT_DONE ]
+[s S690 :1 `uc 1 :1 `uc 1 :4 `uc 1 :2 `uc 1 ]
+[n S690 . ADON GO_nDONE CHS VCFG ]
+[s S691 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S691 . . GO_DONE CHS0 CHS1 CHS2 CHS3 VCFG0 VCFG1 ]
+[s S692 :1 `uc 1 :1 `uc 1 ]
+[n S692 . . DONE ]
+[s S693 :1 `uc 1 :1 `uc 1 ]
+[n S693 . . GO ]
+[s S694 :1 `uc 1 :1 `uc 1 ]
+[n S694 . . NOT_DONE ]
+[s S695 :1 `uc 1 :1 `uc 1 ]
+[n S695 . . nDONE ]
+[s S696 :7 `uc 1 :1 `uc 1 ]
+[n S696 . . ADCAL ]
+[s S697 :1 `uc 1 :1 `uc 1 ]
+[n S697 . . GODONE ]
+[u S688 `S689 1 `S690 1 `S691 1 `S692 1 `S693 1 `S694 1 `S695 1 `S696 1 `S697 1 ]
+[n S688 . . . . . . . . . . ]
+"10830
+[v _ADCON0bits `VS688 ~T0 @X0 0 e@4034 ]
+[s S683 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S683 . ADCS ACQT ADCAL ADFM ]
+[s S684 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S684 . ADCS0 ADCS1 ADCS2 ACQT0 ACQT1 ACQT2 ]
+[s S685 :3 `uc 1 :1 `uc 1 ]
+[n S685 . . CHSN3 ]
+[s S686 :4 `uc 1 :1 `uc 1 ]
+[n S686 . . VCFG01 ]
+[s S687 :5 `uc 1 :1 `uc 1 ]
+[n S687 . . VCFG11 ]
+[u S682 `S683 1 `S684 1 `S685 1 `S686 1 `S687 1 ]
+[n S682 . . . . . . ]
+"10710
+[v _ADCON1bits `VS682 ~T0 @X0 0 e@4033 ]
+[s S515 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S515 . TMR1IF TMR2IF CCP1IF SSP1IF TX1IF RC1IF ADIF ]
+[s S516 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S516 . . SSPIF TXIF RCIF ]
+[u S514 `S515 1 `S516 1 ]
+[n S514 . . . ]
+"7542
+[v _PIR1bits `VS514 ~T0 @X0 0 e@3998 ]
+[s S512 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S512 . TMR1IE TMR2IE CCP1IE SSP1IE TX1IE RC1IE ADIE ]
+[s S513 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S513 . . SSPIE TXIE RCIE ]
+[u S511 `S512 1 `S513 1 ]
+[n S511 . . . ]
+"7466
+[v _PIE1bits `VS511 ~T0 @X0 0 e@3997 ]
+"10949
+[v _ADRESH `Vuc ~T0 @X0 0 e@4036 ]
+"10930
+[v _ADRESL `Vuc ~T0 @X0 0 e@4035 ]
+"57 ../src/messages.h
+[v _ToMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
 "46 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
 [; ;pic18f26j50.h: 46: asm("RPOR0 equ 0EC6h");
@@ -7481,14 +7547,106 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;xlcd.h: 140: extern void DelayFor18TCY(void);
 [; ;xlcd.h: 141: extern void DelayPORXLCD(void);
 [; ;xlcd.h: 142: extern void DelayXLCD(void);
-[; ;adcHelper.h: 17: void adcInit();
-"3 ../src/adcHelper.c
+[; ;adcHelper.h: 20: void adcInit();
+[; ;adcHelper.h: 28: void adcIntHandler();
+[; ;messages.h: 10: typedef struct __msg {
+[; ;messages.h: 11: unsigned char full;
+[; ;messages.h: 12: unsigned char length;
+[; ;messages.h: 13: unsigned char msgtype;
+[; ;messages.h: 14: unsigned char data[10];
+[; ;messages.h: 15: } msg;
+[; ;messages.h: 17: typedef struct __msg_queue {
+[; ;messages.h: 18: msg queue[4];
+[; ;messages.h: 19: unsigned char cur_write_ind;
+[; ;messages.h: 20: unsigned char cur_read_ind;
+[; ;messages.h: 21: } msg_queue;
+[; ;messages.h: 43: void init_queues(void);
+[; ;messages.h: 47: void SleepIfOkay(void);
+[; ;messages.h: 51: void block_on_To_msgqueues(void);
+[; ;messages.h: 57: signed char ToMainLow_sendmsg(unsigned char,unsigned char,void *);
+[; ;messages.h: 58: signed char ToMainLow_recvmsg(unsigned char,unsigned char *,void *);
+[; ;messages.h: 64: signed char ToMainHigh_sendmsg(unsigned char,unsigned char,void *);
+[; ;messages.h: 65: signed char ToMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+[; ;messages.h: 71: signed char FromMainLow_sendmsg(unsigned char,unsigned char,void *);
+[; ;messages.h: 72: signed char FromMainLow_recvmsg(unsigned char,unsigned char *,void *);
+[; ;messages.h: 78: signed char FromMainHigh_sendmsg(unsigned char,unsigned char,void *);
+[; ;messages.h: 79: signed char FromMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+"5 ../src/adcHelper.c
 [v _adcInit `(v ~T0 @X0 1 ef ]
 {
-[; ;adcHelper.c: 3: void adcInit() {
+[; ;adcHelper.c: 5: void adcInit() {
 [e :U _adcInit ]
 [f ]
-[; ;adcHelper.c: 4: }
-"4
-[e :UE 1024 ]
+[; ;adcHelper.c: 7: TRISA = 0x0F;
+"7
+[e = _TRISA -> -> 15 `i `uc ]
+[; ;adcHelper.c: 9: ANCON0bits.PCFG0 = 0;
+"9
+[e = . . _ANCON0bits 0 0 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 12: ADCON0bits.VCFG0 = 0;
+"12
+[e = . . _ADCON0bits 2 6 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 13: ADCON0bits.VCFG1 = 0;
+"13
+[e = . . _ADCON0bits 2 7 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 16: ADCON0bits.CHS0 = 0;
+"16
+[e = . . _ADCON0bits 2 2 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 19: ADCON1bits.ACQT0 = 7;
+"19
+[e = . . _ADCON1bits 1 3 -> -> 7 `i `uc ]
+[; ;adcHelper.c: 20: ADCON1bits.ACQT1 = 7;
+"20
+[e = . . _ADCON1bits 1 4 -> -> 7 `i `uc ]
+[; ;adcHelper.c: 21: ADCON1bits.ACQT2 = 7;
+"21
+[e = . . _ADCON1bits 1 5 -> -> 7 `i `uc ]
+[; ;adcHelper.c: 24: ADCON1bits.ADCS0 = 5;
+"24
+[e = . . _ADCON1bits 1 0 -> -> 5 `i `uc ]
+[; ;adcHelper.c: 25: ADCON1bits.ADCS1 = 5;
+"25
+[e = . . _ADCON1bits 1 1 -> -> 5 `i `uc ]
+[; ;adcHelper.c: 28: ADCON0bits.ADON = 1;
+"28
+[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
+[; ;adcHelper.c: 30: ADCON0bits.GODONE = 1;
+"30
+[e = . . _ADCON0bits 8 1 -> -> 1 `i `uc ]
+[; ;adcHelper.c: 31: PIR1bits.ADIF = 0;
+"31
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 32: PIE1bits.ADIE = 1;
+"32
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;adcHelper.c: 33: }
+"33
+[e :UE 1026 ]
+}
+"35
+[v _adcIntHandler `(v ~T0 @X0 1 ef ]
+{
+[; ;adcHelper.c: 35: void adcIntHandler() {
+[e :U _adcIntHandler ]
+[f ]
+"38
+[v _res `f ~T0 @X0 1 a ]
+[; ;adcHelper.c: 38: float res = (int)(ADRESH << 8) | (int)ADRESL;
+[e = _res -> | << -> _ADRESH `i -> 8 `i -> _ADRESL `i `f ]
+[; ;adcHelper.c: 39: res = res / 0xFFC0;
+"39
+[e = _res / _res -> -> 65472 `ui `f ]
+"41
+[v _output `us ~T0 @X0 1 a ]
+[; ;adcHelper.c: 41: unsigned short output = res * (float)0xFFFF;
+[e = _output -> * _res -> -> 65535 `ui `f `us ]
+[; ;adcHelper.c: 43: ToMainLow_sendmsg(sizeof(short), 50, &output);
+"43
+[e ( _ToMainLow_sendmsg (3 , , -> -> # `s `ui `uc -> -> 50 `i `uc -> &U _output `*v ]
+[; ;adcHelper.c: 46: PIR1bits.ADIF = 0;
+"46
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 47: }
+"47
+[e :UE 1027 ]
 }

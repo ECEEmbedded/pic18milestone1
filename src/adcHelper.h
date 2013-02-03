@@ -1,3 +1,6 @@
+#ifndef ADC_HELPER_H_
+#define ADC_HELPER_H_
+
 /*
  * Handles ADC convesion initializtaion, reading, etc.
  *
@@ -15,3 +18,13 @@
  * ##########################
  */
 void adcInit();
+
+/*
+ * ##########################
+ * adcIntHandler
+ *   Handle adc interrupts
+ * ##########################
+ */
+void adcIntHandler();
+
+#endif

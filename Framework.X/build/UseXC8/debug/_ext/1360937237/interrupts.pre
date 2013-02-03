@@ -9695,7 +9695,13 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 12 "../src/interrupts.h"
+# 20 "../src/adcHelper.h"
+void adcInit();
+
+# 28
+void adcIntHandler();
+
+# 14 "../src/interrupts.h"
 void enable_interrupts(void);
 
 int in_high_int(void);
@@ -9843,14 +9849,19 @@ INTCONbits.TMR0IF = 0;
 timer0_int_handler();
 }
 
-# 109
+
+if (PIR1bits.ADIF) {
+adcIntHandler();
+}
+
+# 114
 SleepIfOkay();
 }
 
-# 117
+# 122
 interrupt low_priority
 
-# 122
+# 127
 void InterruptHandlerLow() {
 
 if (PIR1bits.TMR1IF) {

@@ -1,6 +1,8 @@
 #ifndef __interrupts
 #define __interrupts
 
+#include "adcHelper.h"
+
 // Note: As the interrupt system is currently setup, at the end
 //       of each high-priority interrupt, the system will check
 //       to see if the processor may be put to sleep.  This is

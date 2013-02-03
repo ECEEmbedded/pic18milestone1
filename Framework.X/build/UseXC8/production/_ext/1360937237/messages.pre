@@ -9695,7 +9695,13 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 12 "../src/interrupts.h"
+# 20 "../src/adcHelper.h"
+void adcInit();
+
+# 28
+void adcIntHandler();
+
+# 14 "../src/interrupts.h"
 void enable_interrupts(void);
 
 int in_high_int(void);

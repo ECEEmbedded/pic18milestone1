@@ -344,6 +344,14 @@ void main(void) {
                     timer1_lthread(&t1thread_data, msgtype, length, msgbuffer);
                     break;
                 };
+                case MSG_ADC_DATA:
+                {
+                    unsigned short adcOutput = ((int)msgbuffer[1] << 8) | (int)msgbuffer[0];
+
+                    int k = adcOutput;
+
+                    ADCON0bits.GODONE = 1;
+                };
                 case MSGT_OVERRUN:
                 case MSGT_UART_DATA:
                 {

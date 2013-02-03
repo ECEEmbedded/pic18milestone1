@@ -1,6 +1,10 @@
 #include "adcHelper.h"
+#include "messages.h"
+#include "maindefs.h"
 
 void adcInit() {
+
+    TRISA = 0x0F;	// set RA3-RA0 to inputs
     //Configure required pins
     ANCON0bits.PCFG0 = 0;
 
@@ -12,16 +16,32 @@ void adcInit() {
     ADCON0bits.CHS0 = 0;
 
     //Set acquisition time
-    ADCON1bits.ACQT0 = 1;
+    ADCON1bits.ACQT0 = 7;
+    ADCON1bits.ACQT1 = 7;
+    ADCON1bits.ACQT2 = 7;
 
     //Set conversion time
-    ADCON1bits.ADCS0 = 4;
+    ADCON1bits.ADCS0 = 5;
+    ADCON1bits.ADCS1 = 5;
 
     //Enable ADC module
     ADCON0bits.ADON = 1;
 
+    ADCON0bits.GODONE = 1;
     PIR1bits.ADIF = 0;
     PIE1bits.ADIE = 1;
+}
 
-    ADCON0bits.GODONE = 1;
+void adcIntHandler() {
+
+    //ADC output
+    float res  = (int)(ADRESH << 8) | (int)ADRESL;
+    res = res / 0xFFC0;  //Normalize 10-bit max
+
+    unsigned short output = res * (float)0xFFFF;
+
+    ToMainLow_sendmsg(sizeof(short), MSG_ADC_DATA, &output);
+
+    //Clear ADC
+    PIR1bits.ADIF = 0;
 }

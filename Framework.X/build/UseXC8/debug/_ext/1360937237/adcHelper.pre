@@ -9695,9 +9695,94 @@ extern void DelayFor18TCY(void);
 extern void DelayPORXLCD(void);
 extern void DelayXLCD(void);
 
-# 17 "../src/adcHelper.h"
+# 20 "../src/adcHelper.h"
 void adcInit();
 
-# 3 "../src/adcHelper.c"
+# 28
+void adcIntHandler();
+
+# 10 "../src/messages.h"
+typedef struct __msg {
+unsigned char full;
+unsigned char length;
+unsigned char msgtype;
+unsigned char data[10];
+} msg;
+
+typedef struct __msg_queue {
+msg queue[4];
+unsigned char cur_write_ind;
+unsigned char cur_read_ind;
+} msg_queue;
+
+# 43
+void init_queues(void);
+
+
+
+void SleepIfOkay(void);
+
+
+
+void block_on_To_msgqueues(void);
+
+# 57
+signed char ToMainLow_sendmsg(unsigned char,unsigned char,void *);
+signed char ToMainLow_recvmsg(unsigned char,unsigned char *,void *);
+
+# 64
+signed char ToMainHigh_sendmsg(unsigned char,unsigned char,void *);
+signed char ToMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+
+# 71
+signed char FromMainLow_sendmsg(unsigned char,unsigned char,void *);
+signed char FromMainLow_recvmsg(unsigned char,unsigned char *,void *);
+
+# 78
+signed char FromMainHigh_sendmsg(unsigned char,unsigned char,void *);
+signed char FromMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+
+# 5 "../src/adcHelper.c"
 void adcInit() {
+
+TRISA = 0x0F;
+
+ANCON0bits.PCFG0 = 0;
+
+
+ADCON0bits.VCFG0 = 0;
+ADCON0bits.VCFG1 = 0;
+
+
+ADCON0bits.CHS0 = 0;
+
+
+ADCON1bits.ACQT0 = 7;
+ADCON1bits.ACQT1 = 7;
+ADCON1bits.ACQT2 = 7;
+
+
+ADCON1bits.ADCS0 = 5;
+ADCON1bits.ADCS1 = 5;
+
+
+ADCON0bits.ADON = 1;
+
+ADCON0bits.GODONE = 1;
+PIR1bits.ADIF = 0;
+PIE1bits.ADIE = 1;
+}
+
+void adcIntHandler() {
+
+
+float res = (int)(ADRESH << 8) | (int)ADRESL;
+res = res / 0xFFC0;
+
+unsigned short output = res * (float)0xFFFF;
+
+ToMainLow_sendmsg(sizeof(short), 50, &output);
+
+
+PIR1bits.ADIF = 0;
 }

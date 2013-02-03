@@ -3,4 +3,5 @@
  ../src/messages.c  \
 ../src/maindefs.h  \
 ../src/messages.h  \
-../src/interrupts.h 
+../src/interrupts.h  \
+../src/adcHelper.h 

@@ -9695,8 +9695,11 @@ extern void DelayFor18TCY(void);
 extern void DelayPORXLCD(void);
 extern void DelayXLCD(void);
 
-# 17 "../src/adcHelper.h"
+# 20 "../src/adcHelper.h"
 void adcInit();
+
+# 28
+void adcIntHandler();
 
 # 7 "/Applications/microchip/xc8/v1.12/include/stdarg.h"
 typedef void * va_list[1];
@@ -9761,7 +9764,7 @@ extern int vsscanf(const char *, const char *, va_list);
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 12 "../src/interrupts.h"
+# 14 "../src/interrupts.h"
 void enable_interrupts(void);
 
 int in_high_int(void);
@@ -10049,6 +10052,14 @@ case 11:
 {
 timer1_lthread(&t1thread_data, msgtype, length, msgbuffer);
 break;
+};
+case 50:
+{
+unsigned short adcOutput = ((int)msgbuffer[1] << 8) | (int)msgbuffer[0];
+
+int k = adcOutput;
+
+ADCON0bits.GODONE = 1;
 };
 case 30:
 case 31:
