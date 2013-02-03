@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [s S1026 `uc -> 10 `i `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc -> 10 `i `uc 1 `uc 1 `uc 1 ]
 [n S1026 __i2c_comm buffer buflen event_count status error_code error_count outbuffer outbuflen outbufind slave_addr ]
-"12875 /opt/microchip/xc8/v1.12/include/pic18f26j50.h
+"12875 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
 [s S739 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S739 . SSPM CKP SSPEN SSPOV WCOL ]
@@ -105,7 +105,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S414 . . CCP2_PA2 ]
 [u S406 `S407 1 `S408 1 `S409 1 `S410 1 `S411 1 `S412 1 `S413 1 `S414 1 ]
 [n S406 . . . . . . . . . ]
-"5586 /opt/microchip/xc8/v1.12/include/pic18f26j50.h
+"5586 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
 [v _PORTBbits `VS406 ~T0 @X0 0 e@3969 ]
 "12638
 [v _SSPADD `Vuc ~T0 @X0 0 e@4040 ]
@@ -150,7 +150,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "11253
 [v _SSPCON2bits `VS718 ~T0 @X0 0 e@4037 ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
-"46 /opt/microchip/xc8/v1.12/include/pic18f26j50.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
 [; ;pic18f26j50.h: 46: asm("RPOR0 equ 0EC6h");
 [; <" RPOR0 equ 0EC6h ;# ">
 [; ;pic18f26j50.h: 50: extern volatile unsigned char RPOR1 @ 0xEC7;

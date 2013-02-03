@@ -1,6 +1,62 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[s S1025 `i 1 ]
-[n S1025 __timer0_thread_struct data ]
+[s S183 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S183 . PCFG0 PCFG1 PCFG2 PCFG3 PCFG4 ]
+[u S182 `S183 1 ]
+[n S182 . . ]
+"2543 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+[v _ANCON0bits `VS182 ~T0 @X0 0 e@3912 ]
+[s S689 :1 `uc 1 :1 `uc 1 ]
+[n S689 . . GO_NOT_DONE ]
+[s S690 :1 `uc 1 :1 `uc 1 :4 `uc 1 :2 `uc 1 ]
+[n S690 . ADON GO_nDONE CHS VCFG ]
+[s S691 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S691 . . GO_DONE CHS0 CHS1 CHS2 CHS3 VCFG0 VCFG1 ]
+[s S692 :1 `uc 1 :1 `uc 1 ]
+[n S692 . . DONE ]
+[s S693 :1 `uc 1 :1 `uc 1 ]
+[n S693 . . GO ]
+[s S694 :1 `uc 1 :1 `uc 1 ]
+[n S694 . . NOT_DONE ]
+[s S695 :1 `uc 1 :1 `uc 1 ]
+[n S695 . . nDONE ]
+[s S696 :7 `uc 1 :1 `uc 1 ]
+[n S696 . . ADCAL ]
+[s S697 :1 `uc 1 :1 `uc 1 ]
+[n S697 . . GODONE ]
+[u S688 `S689 1 `S690 1 `S691 1 `S692 1 `S693 1 `S694 1 `S695 1 `S696 1 `S697 1 ]
+[n S688 . . . . . . . . . . ]
+"10830
+[v _ADCON0bits `VS688 ~T0 @X0 0 e@4034 ]
+[s S683 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S683 . ADCS ACQT ADCAL ADFM ]
+[s S684 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S684 . ADCS0 ADCS1 ADCS2 ACQT0 ACQT1 ACQT2 ]
+[s S685 :3 `uc 1 :1 `uc 1 ]
+[n S685 . . CHSN3 ]
+[s S686 :4 `uc 1 :1 `uc 1 ]
+[n S686 . . VCFG01 ]
+[s S687 :5 `uc 1 :1 `uc 1 ]
+[n S687 . . VCFG11 ]
+[u S682 `S683 1 `S684 1 `S685 1 `S686 1 `S687 1 ]
+[n S682 . . . . . . ]
+"10710
+[v _ADCON1bits `VS682 ~T0 @X0 0 e@4033 ]
+[s S515 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S515 . TMR1IF TMR2IF CCP1IF SSP1IF TX1IF RC1IF ADIF ]
+[s S516 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S516 . . SSPIF TXIF RCIF ]
+[u S514 `S515 1 `S516 1 ]
+[n S514 . . . ]
+"7542
+[v _PIR1bits `VS514 ~T0 @X0 0 e@3998 ]
+[s S512 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S512 . TMR1IE TMR2IE CCP1IE SSP1IE TX1IE RC1IE ADIE ]
+[s S513 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S513 . . SSPIE TXIE RCIE ]
+[u S511 `S512 1 `S513 1 ]
+[n S511 . . . ]
+"7466
+[v _PIE1bits `VS511 ~T0 @X0 0 e@3997 ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
 "46 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
 [; ;pic18f26j50.h: 46: asm("RPOR0 equ 0EC6h");
@@ -5432,7 +5488,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18f26j50.h: 15130: unsigned SP3 :1;
 [; ;pic18f26j50.h: 15131: unsigned SP4 :1;
 [; ;pic18f26j50.h: 15132: unsigned :2;
-[; ;pic18f26j50.h: 15133: unsigned STKOVF :1;
+[; ;pic18f26j50.h: 15133: unsigned STKFUL :1;
 [; ;pic18f26j50.h: 15134: };
 [; ;pic18f26j50.h: 15135: } STKPTRbits_t;
 [; ;pic18f26j50.h: 15136: extern volatile STKPTRbits_t STKPTRbits @ 0xFFC;
@@ -6376,7 +6432,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18f26j50.h: 17061: extern volatile __bit START1 @ (((unsigned) &SSP1STAT)*8) + 3;
 [; ;pic18f26j50.h: 17063: extern volatile __bit START2 @ (((unsigned) &SSP2STAT)*8) + 3;
 [; ;pic18f26j50.h: 17065: extern volatile __bit STKFUL @ (((unsigned) &STKPTR)*8) + 7;
-[; ;pic18f26j50.h: 17067: extern volatile __bit STKOVF @ (((unsigned) &STKPTR)*8) + 7;
+[; ;pic18f26j50.h: 17067: extern volatile __bit STKFUL @ (((unsigned) &STKPTR)*8) + 7;
 [; ;pic18f26j50.h: 17069: extern volatile __bit STKUNF @ (((unsigned) &STKPTR)*8) + 6;
 [; ;pic18f26j50.h: 17071: extern volatile __bit STOP @ (((unsigned) &SSP1STAT)*8) + 4;
 [; ;pic18f26j50.h: 17073: extern volatile __bit STOP1 @ (((unsigned) &SSP1STAT)*8) + 4;
@@ -6637,6 +6693,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18f26j50.h: 17583: extern volatile __bit nWRITE @ (((unsigned) &SSP1STAT)*8) + 2;
 [; ;pic18f26j50.h: 17585: extern volatile __bit nWRITE1 @ (((unsigned) &SSP1STAT)*8) + 2;
 [; ;pic18f26j50.h: 17587: extern volatile __bit nWRITE2 @ (((unsigned) &SSP2STAT)*8) + 2;
+[; ;pic18.h: 18: __attribute__((__unsupported__("The flash_write routine is no longer supported. Please use the peripheral library functions: WriteBytesFlash, WriteBlockFlash or WriteWordFlash"))) void flash_write(const unsigned char *, unsigned int, __far unsigned c
+[; ;pic18.h: 144: extern void _delay(unsigned long);
+[; ;pic18.h: 146: extern void _delaywdt(unsigned long);
+[; ;pic18.h: 148: extern void _delay3(unsigned char);
 [; ;adc.h: 2008: union ADCResult
 [; ;adc.h: 2009: {
 [; ;adc.h: 2010: int lr;
@@ -7479,61 +7539,63 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;xlcd.h: 140: extern void DelayFor18TCY(void);
 [; ;xlcd.h: 141: extern void DelayPORXLCD(void);
 [; ;xlcd.h: 142: extern void DelayXLCD(void);
-[; ;pic18.h: 18: __attribute__((__unsupported__("The flash_write routine is no longer supported. Please use the peripheral library functions: WriteBytesFlash, WriteBlockFlash or WriteWordFlash"))) void flash_write(const unsigned char *, unsigned int, __far unsigned c
-[; ;pic18.h: 144: extern void _delay(unsigned long);
-[; ;pic18.h: 146: extern void _delaywdt(unsigned long);
-[; ;pic18.h: 148: extern void _delay3(unsigned char);
-[; ;stdarg.h: 7: typedef void * va_list[1];
-[; ;stdarg.h: 10: extern void * __va_start(void);
-[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
-[; ;stdio.h: 23: extern int errno;
-[; ;stdio.h: 54: struct __prbuf
-[; ;stdio.h: 55: {
-[; ;stdio.h: 56: char * ptr;
-[; ;stdio.h: 57: void (* func)(char);
-[; ;stdio.h: 58: };
-[; ;conio.h: 17: extern int errno;
-[; ;conio.h: 20: extern void init_uart(void);
-[; ;conio.h: 22: extern char getch(void);
-[; ;conio.h: 23: extern char getche(void);
-[; ;conio.h: 24: extern void putch(char);
-[; ;conio.h: 25: extern void ungetch(char);
-[; ;conio.h: 27: extern __bit kbhit(void);
-[; ;conio.h: 31: extern char * cgets(char *);
-[; ;conio.h: 32: extern void cputs(const char *);
-[; ;stdio.h: 99: extern int cprintf(char *, ...);
-[; ;stdio.h: 104: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-[; ;stdio.h: 194: extern char * gets(char *);
-[; ;stdio.h: 195: extern int puts(const char *);
-[; ;stdio.h: 196: extern int scanf(const char *, ...);
-[; ;stdio.h: 197: extern int sscanf(const char *, const char *, ...);
-[; ;stdio.h: 198: extern int vprintf(const char *, va_list);
-[; ;stdio.h: 199: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-[; ;stdio.h: 200: extern int vscanf(const char *, va_list ap);
-[; ;stdio.h: 201: extern int vsscanf(const char *, const char *, va_list);
-[; ;stdio.h: 205: extern int sprintf(char *, const char *, ...);
-[; ;stdio.h: 206: extern int printf(const char *, ...);
-[; ;timer0_thread.h: 1: typedef struct __timer0_thread_struct {
-[; ;timer0_thread.h: 3: int data;
-[; ;timer0_thread.h: 4: } timer0_thread_struct;
-[; ;timer0_thread.h: 6: int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
-"9 ../src/timer0_thread.c
-[v _timer0_lthread `(i ~T0 @X0 1 ef4`*S1025`i`i`*uc ]
+[; ;adcHelper.h: 17: void adcInit();
+"3 ../src/adcHelper.c
+[v _adcInit `(v ~T0 @X0 1 ef ]
 {
-[; ;timer0_thread.c: 9: int timer0_lthread(timer0_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
-[e :U _timer0_lthread ]
-[v _tptr `*S1025 ~T0 @X0 1 r1 ]
-[v _msgtype `i ~T0 @X0 1 r2 ]
-[v _length `i ~T0 @X0 1 r3 ]
-[v _msgbuffer `*uc ~T0 @X0 1 r4 ]
+[; ;adcHelper.c: 3: void adcInit() {
+[e :U _adcInit ]
 [f ]
-"10
-[v _msgval `*ui ~T0 @X0 1 a ]
-[; ;timer0_thread.c: 10: unsigned int *msgval;
-[; ;timer0_thread.c: 12: msgval = (unsigned int *) msgbuffer;
+[; ;adcHelper.c: 5: ANCON0bits.PCFG0 = 0;
+"5
+[e = . . _ANCON0bits 0 0 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 8: ADCON0bits.VCFG0 = 0;
+"8
+[e = . . _ADCON0bits 2 6 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 9: ADCON0bits.VCFG1 = 0;
+"9
+[e = . . _ADCON0bits 2 7 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 12: ADCON0bits.CHS0 = 0;
 "12
-[e = _msgval -> _msgbuffer `*ui ]
-[; ;timer0_thread.c: 16: }
-"16
-[e :UE 1026 ]
+[e = . . _ADCON0bits 2 2 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 15: ADCON1bits.ACQT0 = 1;
+"15
+[e = . . _ADCON1bits 1 3 -> -> 1 `i `uc ]
+[; ;adcHelper.c: 18: ADCON1bits.ADCS0 = 4;
+"18
+[e = . . _ADCON1bits 1 0 -> -> 4 `i `uc ]
+[; ;adcHelper.c: 21: ADCON0bits.ADON = 1;
+"21
+[e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
+[; ;adcHelper.c: 23: PIR1bits.ADIF = 0;
+"23
+[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
+[; ;adcHelper.c: 24: PIE1bits.ADIE = 1;
+"24
+[e = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;adcHelper.c: 26: ADCON0bits.GODONE = 1;
+"26
+[e = . . _ADCON0bits 8 1 -> -> 1 `i `uc ]
+[; ;adcHelper.c: 28: while (1) {
+"28
+[e :U 1026 ]
+{
+"29
+[v _c `i ~T0 @X0 1 a ]
+[; ;adcHelper.c: 29: int c = ADCON0bits.GODONE;
+[e = _c -> . . _ADCON0bits 8 1 `i ]
+"30
+[v _d `i ~T0 @X0 1 a ]
+[; ;adcHelper.c: 30: int d = c;
+[e = _d _c ]
+"31
+}
+[e :U 1025 ]
+"28
+[e $U 1026  ]
+[e :U 1027 ]
+[; ;adcHelper.c: 31: }
+[; ;adcHelper.c: 32: }
+"32
+[e :UE 1024 ]
 }

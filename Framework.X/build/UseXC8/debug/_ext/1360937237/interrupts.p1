@@ -17,7 +17,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S851 . BOR POR PD TO RI CM ]
 [u S843 `S844 1 `S845 1 `S846 1 `S847 1 `S848 1 `S849 1 `S850 1 `S851 1 ]
 [n S843 . . . . . . . . . ]
-"13264 /opt/microchip/xc8/v1.12/include/pic18f26j50.h
+"13264 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
 [v _RCONbits `VS843 ~T0 @X0 0 e@4048 ]
 [s S948 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S948 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
@@ -52,7 +52,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "16 ../src/my_uart.h
 [v _uart_recv_int_handler `(v ~T0 @X0 0 ef ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
-"46 /opt/microchip/xc8/v1.12/include/pic18f26j50.h
+"46 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
 [; ;pic18f26j50.h: 46: asm("RPOR0 equ 0EC6h");
 [; <" RPOR0 equ 0EC6h ;# ">
 [; ;pic18f26j50.h: 50: extern volatile unsigned char RPOR1 @ 0xEC7;

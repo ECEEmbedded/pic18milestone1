@@ -8,4 +8,5 @@
 ../src/interrupts.h  \
 ../src/uart_thread.h  \
 ../src/timer0_thread.h  \
-../src/timer1_thread.h 
+../src/timer1_thread.h  \
+../src/adcHelper.h 

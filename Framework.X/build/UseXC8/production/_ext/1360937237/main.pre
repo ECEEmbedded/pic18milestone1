@@ -1,7 +1,7 @@
 
 # 1 "../src/main.c"
 
-# 44 "/opt/microchip/xc8/v1.12/include/pic18f26j50.h"
+# 44 "/Applications/microchip/xc8/v1.12/include/pic18f26j50.h"
 extern volatile unsigned char RPOR0 @ 0xEC6;
 
 asm("RPOR0 equ 0EC6h");
@@ -6130,7 +6130,7 @@ unsigned SP2 :1;
 unsigned SP3 :1;
 unsigned SP4 :1;
 unsigned :2;
-unsigned STKOVF :1;
+unsigned STKFUL :1;
 };
 } STKPTRbits_t;
 extern volatile STKPTRbits_t STKPTRbits @ 0xFFC;
@@ -7998,7 +7998,7 @@ extern volatile __bit START2 @ (((unsigned) &SSP2STAT)*8) + 3;
 
 extern volatile __bit STKFUL @ (((unsigned) &STKPTR)*8) + 7;
 
-extern volatile __bit STKOVF @ (((unsigned) &STKPTR)*8) + 7;
+extern volatile __bit STKFUL @ (((unsigned) &STKPTR)*8) + 7;
 
 extern volatile __bit STKUNF @ (((unsigned) &STKPTR)*8) + 6;
 
@@ -8520,7 +8520,19 @@ extern volatile __bit nWRITE1 @ (((unsigned) &SSP1STAT)*8) + 2;
 
 extern volatile __bit nWRITE2 @ (((unsigned) &SSP2STAT)*8) + 2;
 
-# 2008 "/opt/microchip/xc8/v1.12/include/plib/adc.h"
+# 18 "/Applications/microchip/xc8/v1.12/include/pic18.h"
+__attribute__((__unsupported__("The flash_write routine is no longer supported. Please use the peripheral library functions: WriteBytesFlash, WriteBlockFlash or WriteWordFlash"))) void flash_write(const unsigned char *, unsigned int, __far unsigned char *);
+
+
+# 143
+#pragma intrinsic(_delay)
+extern void _delay(unsigned long);
+#pragma intrinsic(_delaywdt)
+extern void _delaywdt(unsigned long);
+#pragma intrinsic(_delay3)
+extern void _delay3(unsigned char);
+
+# 2008 "/Applications/microchip/xc8/v1.12/include/plib/adc.h"
 union ADCResult
 {
 int lr;
@@ -8547,13 +8559,13 @@ void SetChanADC(unsigned char );
 # 2100
 void SelChanConvADC( unsigned char );
 
-# 202 "/opt/microchip/xc8/v1.12/include/plib/ancomp.h"
+# 202 "/Applications/microchip/xc8/v1.12/include/plib/ancomp.h"
 void Close_ancomp1( void );
 void Open_ancomp1(unsigned char config);
 void Close_ancomp2( void );
 void Open_ancomp2(unsigned char config);
 
-# 236 "/opt/microchip/xc8/v1.12/include/plib/spi.h"
+# 236 "/Applications/microchip/xc8/v1.12/include/plib/spi.h"
 void OpenSPI1( unsigned char sync_mode,
 unsigned char bus_mode,
 unsigned char smp_phase );
@@ -8579,7 +8591,7 @@ void putsSPI2( unsigned char *wrptr );
 
 unsigned char ReadSPI2( void );
 
-# 414 "/opt/microchip/xc8/v1.12/include/plib/can2510.h"
+# 414 "/Applications/microchip/xc8/v1.12/include/plib/can2510.h"
 void CAN2510Initialize(  unsigned int configuration,
  unsigned char brp,
  unsigned char interruptFlags,
@@ -8686,7 +8698,7 @@ unsigned char CAN2510DataRead(  unsigned char bufferNum,
  unsigned char *numBytes,
  unsigned char *data );
 
-# 64 "/opt/microchip/xc8/v1.12/include/plib/capture.h"
+# 64 "/Applications/microchip/xc8/v1.12/include/plib/capture.h"
 union capstatus
 {
 
@@ -8725,7 +8737,7 @@ void OpenCapture2 ( unsigned char config);
 unsigned int ReadCapture2 (void);
 void CloseCapture2 (void);
 
-# 385 "/opt/microchip/xc8/v1.12/include/plib/compare.h"
+# 385 "/Applications/microchip/xc8/v1.12/include/plib/compare.h"
 void OpenCompare1(unsigned char config,unsigned int period);
 void CloseCompare1(void);
 
@@ -8733,14 +8745,14 @@ void CloseCompare1(void);
 void OpenCompare2(unsigned char config, unsigned int period);
 void CloseCompare2(void);
 
-# 374 "/opt/microchip/xc8/v1.12/include/plib/ctmu.h"
+# 374 "/Applications/microchip/xc8/v1.12/include/plib/ctmu.h"
 void OpenCTMU(unsigned char config1,unsigned char config2,unsigned char config3);
 
 # 379
 void CurrentControlCTMU(unsigned char config);
 void CloseCTMU(void);
 
-# 49 "/opt/microchip/xc8/v1.12/include/plib/dpslp.h"
+# 49 "/Applications/microchip/xc8/v1.12/include/plib/dpslp.h"
 typedef union
 {
 struct
@@ -8776,7 +8788,7 @@ extern void ReadDSGPR( CONTEXT* ptr );
 
 extern void ULPWakeUpEnable( void );
 
-# 2 "/opt/microchip/xc8/v1.12/include/stddef.h"
+# 2 "/Applications/microchip/xc8/v1.12/include/stddef.h"
 typedef int ptrdiff_t;
 typedef unsigned size_t;
 typedef unsigned short wchar_t;
@@ -8784,7 +8796,7 @@ typedef unsigned short wchar_t;
 # 13
 extern int errno;
 
-# 65 "/opt/microchip/xc8/v1.12/include/GenericTypeDefs.h"
+# 65 "/Applications/microchip/xc8/v1.12/include/GenericTypeDefs.h"
 typedef enum _BOOL { FALSE = 0, TRUE } BOOL;
 
 
@@ -9219,7 +9231,7 @@ struct
 } bits;
 } QWORD_VAL;
 
-# 113 "/opt/microchip/xc8/v1.12/include/plib/flash.h"
+# 113 "/Applications/microchip/xc8/v1.12/include/plib/flash.h"
 extern void ReadFlash(unsigned long startaddr, unsigned int num_bytes, unsigned char *flash_array);
 
 # 120
@@ -9232,7 +9244,7 @@ extern void WriteBytesFlash(unsigned long startaddr, unsigned int num_bytes, uns
 
 extern void WriteWordFlash(unsigned long startaddr, unsigned int data);
 
-# 244 "/opt/microchip/xc8/v1.12/include/plib/i2c.h"
+# 244 "/Applications/microchip/xc8/v1.12/include/plib/i2c.h"
 void OpenI2C1( unsigned char sync_mode, unsigned char slew );
 
 # 264
@@ -9272,7 +9284,7 @@ unsigned char address,
 unsigned char *rdptr,
 unsigned char length );
 
-# 200 "/opt/microchip/xc8/v1.12/include/plib/mwire.h"
+# 200 "/Applications/microchip/xc8/v1.12/include/plib/mwire.h"
 void OpenMwire1( unsigned char sync_mode );
 
 
@@ -9285,7 +9297,7 @@ signed char WriteMwire1( unsigned char data_out );
 # 234
 void getsMwire1( unsigned char *rdptr, unsigned char length );
 
-# 126 "/opt/microchip/xc8/v1.12/include/plib/portb.h"
+# 126 "/Applications/microchip/xc8/v1.12/include/plib/portb.h"
 void OpenPORTB( unsigned char config);
 
 # 176
@@ -9300,7 +9312,7 @@ void OpenRB2INT( unsigned char config);
 # 230
 void OpenRB3INT( unsigned char config);
 
-# 85 "/opt/microchip/xc8/v1.12/include/plib/pwm.h"
+# 85 "/Applications/microchip/xc8/v1.12/include/plib/pwm.h"
 union PWMDC
 {
 unsigned int lpwm;
@@ -9324,7 +9336,7 @@ void SetDCPWM2( unsigned int duty_cycle);
 # 492
 void ClosePWM2 (void);
 
-# 16 "/opt/microchip/xc8/v1.12/include/plib/reset.h"
+# 16 "/Applications/microchip/xc8/v1.12/include/plib/reset.h"
 char isMCLR(void);
 void StatusReset(void);
 char isPOR(void);
@@ -9342,7 +9354,7 @@ char isWDTWU(void);
 
 char isLVD(void);
 
-# 43 "/opt/microchip/xc8/v1.12/include/plib/rtcc.h"
+# 43 "/Applications/microchip/xc8/v1.12/include/plib/rtcc.h"
 typedef union _WORD_VAL
 {
 unsigned int Val;
@@ -9518,7 +9530,7 @@ void Open_RTCC(void);
 void Close_RTCC(void);
 unsigned char update_RTCC(void);
 
-# 97 "/opt/microchip/xc8/v1.12/include/plib/sw_i2c.h"
+# 97 "/Applications/microchip/xc8/v1.12/include/plib/sw_i2c.h"
 void SWStopI2C ( void );
 void SWStartI2C ( void );
 void SWRestartI2C ( void );
@@ -9531,7 +9543,7 @@ signed char SWWriteI2C(  unsigned char data_out );
 signed char SWGetsI2C(  unsigned char *rdptr,  unsigned char length );
 signed char SWPutsI2C(  unsigned char *wrptr );
 
-# 84 "/opt/microchip/xc8/v1.12/include/plib/sw_spi.h"
+# 84 "/Applications/microchip/xc8/v1.12/include/plib/sw_spi.h"
 void OpenSWSPI(void);
 
 
@@ -9543,7 +9555,7 @@ void SetCSSWSPI(void);
 
 void ClearCSSWSPI(void);
 
-# 47 "/opt/microchip/xc8/v1.12/include/plib/sw_uart.h"
+# 47 "/Applications/microchip/xc8/v1.12/include/plib/sw_uart.h"
 void OpenUART(void);
 
 unsigned char ReadUART(void);
@@ -9559,7 +9571,7 @@ extern void DelayRXBitUART (void);
 extern void DelayRXHalfBitUART(void);
 extern void DelayTXBitUART (void);
 
-# 36 "/opt/microchip/xc8/v1.12/include/plib/timers.h"
+# 36 "/Applications/microchip/xc8/v1.12/include/plib/timers.h"
 union Timers
 {
 unsigned int lt;
@@ -9595,7 +9607,7 @@ void CloseTimer4 (void);
 # 1179
 void SetTmrCCPSrc( unsigned char );
 
-# 200 "/opt/microchip/xc8/v1.12/include/plib/usart.h"
+# 200 "/Applications/microchip/xc8/v1.12/include/plib/usart.h"
 union USART1
 {
 unsigned char val;
@@ -9648,7 +9660,7 @@ void baud1USART ( unsigned char baudconfig);
 # 665
 void baud2USART ( unsigned char baudconfig);
 
-# 87 "/opt/microchip/xc8/v1.12/include/plib/xlcd.h"
+# 87 "/Applications/microchip/xc8/v1.12/include/plib/xlcd.h"
 void OpenXLCD( unsigned char);
 
 # 92
@@ -9683,19 +9695,10 @@ extern void DelayFor18TCY(void);
 extern void DelayPORXLCD(void);
 extern void DelayXLCD(void);
 
-# 18 "/opt/microchip/xc8/v1.12/include/pic18.h"
-__attribute__((__unsupported__("The flash_write routine is no longer supported. Please use the peripheral library functions: WriteBytesFlash, WriteBlockFlash or WriteWordFlash"))) void flash_write(const unsigned char *, unsigned int, __far unsigned char *);
+# 17 "../src/adcHelper.h"
+void adcInit();
 
-
-# 143
-#pragma intrinsic(_delay)
-extern void _delay(unsigned long);
-#pragma intrinsic(_delaywdt)
-extern void _delaywdt(unsigned long);
-#pragma intrinsic(_delay3)
-extern void _delay3(unsigned char);
-
-# 7 "/opt/microchip/xc8/v1.12/include/stdarg.h"
+# 7 "/Applications/microchip/xc8/v1.12/include/stdarg.h"
 typedef void * va_list[1];
 
 #pragma intrinsic(__va_start)
@@ -9704,7 +9707,7 @@ extern void * __va_start(void);
 #pragma intrinsic(__va_arg)
 extern void * __va_arg(void *, ...);
 
-# 23 "/opt/microchip/xc8/v1.12/include/stdio.h"
+# 23 "/Applications/microchip/xc8/v1.12/include/stdio.h"
 extern int errno;
 
 # 54
@@ -9714,7 +9717,7 @@ char * ptr;
 void (* func)(char);
 };
 
-# 17 "/opt/microchip/xc8/v1.12/include/conio.h"
+# 17 "/Applications/microchip/xc8/v1.12/include/conio.h"
 extern int errno;
 
 
@@ -9731,7 +9734,7 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 99 "/opt/microchip/xc8/v1.12/include/stdio.h"
+# 99 "/Applications/microchip/xc8/v1.12/include/stdio.h"
 extern int cprintf(char *, ...);
 #pragma printf_check(cprintf)
 
@@ -9869,7 +9872,7 @@ int data;
 int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
 
 
-# 80 "../src/main.c"
+# 81 "../src/main.c"
 #pragma config WDTEN = OFF
 #pragma config PLLDIV = 3
 #pragma config STVREN = OFF
@@ -9908,7 +9911,7 @@ int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
 
 #pragma config WPDIS = OFF
 
-# 123
+# 124
 void main(void) {
 char c;
 signed char length;
@@ -9922,11 +9925,11 @@ uart_thread_struct uthread_data;
 timer1_thread_struct t1thread_data;
 timer0_thread_struct t0thread_data;
 
-# 146
+# 147
 OSCCON = 0xE0;
 OSCTUNEbits.PLLEN = 1;
 
-# 155
+# 156
 init_uart_recv(&uc);
 
 
@@ -9938,23 +9941,23 @@ init_timer1_lthread(&t1thread_data);
 
 init_queues();
 
-# 182
+# 183
 OpenTimer0(0b11111111 & 0b10111111 & 0b11011111 & 0b11110110);
 
 
 OpenTimer1(0b11111111 & 0b10011111 & 0b11111111 & 0b11111111 & 0b11111011 & 0b11111111,0x0);
 
-# 193
+# 194
 IPR1bits.TMR1IP = 0;
 
 IPR1bits.RCIP = 0;
 
 IPR1bits.SSPIP = 1;
 
-# 206
+# 207
 i2c_configure_slave(0x9E);
 
-# 221
+# 222
 PIE1bits.SSPIE = 1;
 
 
@@ -9962,17 +9965,20 @@ PIE1bits.SSPIE = 1;
 Open1USART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
 0b11111111 & 0b11101111, 0x19);
 
-# 234
+# 235
 enable_interrupts();
 
-# 254
+# 257
+adcInit();
+
 while (1) {
+
 
 
 
 block_on_To_msgqueues();
 
-# 265
+# 271
 length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
 if (length < 0) {
 
@@ -9997,7 +10003,7 @@ break;
 case 42:
 {
 
-# 295
+# 301
 switch (last_reg_recvd) {
 case 0xaa:
 {

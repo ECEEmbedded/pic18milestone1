@@ -1,3 +1,4 @@
+#include "adcHelper.h"
 #include "maindefs.h"
 #include <stdio.h>
 #ifndef __XC8
@@ -251,6 +252,10 @@ void main(void) {
     // that should get them.  Although the subroutines are not threads, but
     // they can be equated with the tasks in your task diagram if you
     // structure them properly.
+
+    //Setup ad
+    adcInit();
+
     while (1) {
 
         // Call a routine that blocks until either on the incoming
