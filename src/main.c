@@ -246,15 +246,14 @@ void main(void) {
     // It is also slow and is blocking, so it will perturb your code's operation
     // Here is how it looks: printf("Hello\r\n");
 
+    //Setup ad
+    adcInit();
 
     // loop forever
     // This loop is responsible for "handing off" messages to the subroutines
     // that should get them.  Although the subroutines are not threads, but
     // they can be equated with the tasks in your task diagram if you
     // structure them properly.
-
-    //Setup ad
-    adcInit();
 
     while (1) {
 
@@ -298,28 +297,10 @@ void main(void) {
                     //
                     // The last byte received is the "register" that is trying to be read
                     // The response is dependent on the register.
-                    switch (last_reg_recvd) {
-                        case 0xaa:
-                        {
-                            length = 2;
-                            msgbuffer[0] = 0x55;
-                            msgbuffer[1] = 0xAA;
-                            break;
-                        }
-                        case 0xa8:
-                        {
-                            length = 1;
-                            msgbuffer[0] = 0x3A;
-                            break;
-                        }
-                        case 0xa9:
-                        {
-                            length = 1;
-                            msgbuffer[0] = 0xA3;
-                            break;
-                        }
-                    };
-                    start_i2c_slave_reply(length, msgbuffer);
+                    last_reg_recvd = msgbuffer[length-1];
+                    msg *tmpPtr = i2c_addressable_registers + last_reg_recvd - 0xA8;
+                    start_i2c_slave_reply(tmpPtr->length, tmpPtr->data);
+                    
                     break;
                 };
                 default:
@@ -346,9 +327,13 @@ void main(void) {
                 };
                 case MSG_ADC_DATA:
                 {
-                    unsigned short adcOutput = ((int)msgbuffer[1] << 8) | (int)msgbuffer[0];
+                    //unsigned short adcOutput = ((int)msgbuffer[1] << 8) | (int)msgbuffer[0];
 
-                    int k = adcOutput;
+                    //int k = adcOutput;
+                    i2c_addressable_registers[2].data[1] = 0xAA; // msgtype. 0xAA is ADC message
+                    i2c_addressable_registers[2].data[1] = msgbuffer[0];
+                    i2c_addressable_registers[2].data[2] = msgbuffer[1];
+                    i2c_addressable_registers[2].length = 3;
 
                     ADCON0bits.GODONE = 1;
                 };

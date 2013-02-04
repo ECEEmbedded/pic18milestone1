@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"6789 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"6789 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 [s S183 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S183 . PCFG0 PCFG1 PCFG2 PCFG3 PCFG4 ]
@@ -66,7 +66,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "57 ../src/messages.h
 [v _ToMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [; ;pic18f26j50.h: 46: asm("RPOR0 equ 0EC6h");
 [; <" RPOR0 equ 0EC6h ;# ">
 [; ;pic18f26j50.h: 50: extern volatile unsigned char RPOR1 @ 0xEC7;
@@ -7638,7 +7638,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _res / _res -> -> 65472 `ui `f ]
 "41
 [v _output `us ~T0 @X0 1 a ]
-[; ;adcHelper.c: 41: unsigned short output = res * 0xFFFF;
+[; ;adcHelper.c: 41: unsigned short output = res * (float)0xFFFF;
 [e = _output -> * _res -> -> 65535 `ui `f `us ]
 [; ;adcHelper.c: 43: ToMainLow_sendmsg(sizeof(short), 50, &output);
 "43

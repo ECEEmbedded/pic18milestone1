@@ -7,9 +7,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S516 . . SSPIF TXIF RCIF ]
 [u S514 `S515 1 `S516 1 ]
 [n S514 . . . ]
-"7542 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"7542 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [v _PIR1bits `VS514 ~T0 @X0 0 e@3998 ]
-"244 /Applications/microchip/xc8/v1.12/include/plib/usart.h
+"244 C:\Program Files (x86)\Microchip\xc8\v1.12\include\plib\usart.h
 [v _Read1USART `(uc ~T0 @X0 0 ef ]
 "57 ../src/messages.h
 [v _ToMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
@@ -17,7 +17,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1021 . RX_NINE TX_NINE FRAME_ERROR OVERRUN_ERROR fill ]
 [u S1020 `uc 1 `S1021 1 ]
 [n S1020 USART1 val . ]
-"212 /Applications/microchip/xc8/v1.12/include/plib/usart.h
+"212 C:\Program Files (x86)\Microchip\xc8\v1.12\include\plib\usart.h
 [v _USART1_Status `S1020 ~T0 @X0 0 e ]
 [s S573 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S573 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
@@ -35,10 +35,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S579 . . SRENA ]
 [u S572 `S573 1 `S574 1 `S575 1 `S576 1 `S577 1 `S578 1 `S579 1 ]
 [n S572 . . . . . . . . ]
-"8656 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"8656 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [v _RCSTAbits `VS572 ~T0 @X0 0 e@4012 ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [; ;pic18f26j50.h: 46: asm("RPOR0 equ 0EC6h");
 [; <" RPOR0 equ 0EC6h ;# ">
 [; ;pic18f26j50.h: 50: extern volatile unsigned char RPOR1 @ 0xEC7;

@@ -8,6 +8,9 @@
 
 static i2c_comm *ic_ptr;
 
+static unsigned char requested_adr;
+
+#ifdef IS_I2C_MASTER
 // Configure for I2C Master mode -- the variable "slave_addr" should be stored in
 //   i2c_comm (as pointed to by ic_ptr) for later use.
 
@@ -49,6 +52,8 @@ unsigned char i2c_master_recv(unsigned char length) {
     // Your code goes here
     return(0);
 }
+
+#endif
 
 void start_i2c_slave_reply(unsigned char length, unsigned char *msg) {
 
@@ -315,4 +320,10 @@ void i2c_configure_slave(unsigned char addr) {
     SSPCON2bits.SEN = 1;
     SSPCON1 |= SSPENB;
     // end of i2c configure
+
+    // register clearing
+    int i;
+    for (i = 0; i < I2C_REG_COUNT; ++i) {
+        i2c_addressable_registers[i].length = 0;
+    }
 }

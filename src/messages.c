@@ -28,9 +28,7 @@ signed char send_msg(msg_queue *qptr, unsigned char length, unsigned char msgtyp
     size_t tlength = length;
 
 #ifdef DEBUG
-    if (length > MSGLEN) {
-        return (MSGBAD_LEN);
-    } else if (length < 0) {
+    if (length < 0 || length > MSGLEN) {
         return (MSGBAD_LEN);
     }
 #endif

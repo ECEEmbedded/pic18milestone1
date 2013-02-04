@@ -3,7 +3,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1024 __msg full length msgtype data ]
 [s S1025 `S1024 -> 4 `i `uc 1 `uc 1 ]
 [n S1025 __msg_queue queue cur_write_ind cur_read_ind ]
-"22 /Applications/microchip/xc8/v1.12/include/string.h
+"22 C:\Program Files (x86)\Microchip\xc8\v1.12\include\string.h
 [v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
 [s S887 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
 [n S887 . SCS . OSTS IRCF IDLEN ]
@@ -11,7 +11,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S888 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
 [u S886 `S887 1 `S888 1 ]
 [n S886 . . . ]
-"13963 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"13963 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [v _OSCCONbits `VS886 ~T0 @X0 0 e@4051 ]
 "20 ../src/interrupts.h
 [v _in_low_int `(i ~T0 @X0 0 ef ]
@@ -19,10 +19,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _in_high_int `(i ~T0 @X0 0 ef ]
 "23
 [v _in_main `(i ~T0 @X0 0 ef ]
-"30 /Applications/microchip/xc8/v1.12/include/delays.h
+"30 C:\Program Files (x86)\Microchip\xc8\v1.12\include\delays.h
 [v _Delay1KTCYx `(v ~T0 @X0 0 ef1`uc ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [; ;pic18f26j50.h: 46: asm("RPOR0 equ 0EC6h");
 [; <" RPOR0 equ 0EC6h ;# ">
 [; ;pic18f26j50.h: 50: extern volatile unsigned char RPOR1 @ 0xEC7;
@@ -7622,465 +7622,465 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;messages.c: 27: msg *qmsg;
 [; ;messages.c: 28: size_t tlength = length;
 [e = _tlength -> _length `ui ]
-[; ;messages.c: 38: slot = qptr->cur_write_ind;
-"38
+[; ;messages.c: 36: slot = qptr->cur_write_ind;
+"36
 [e = _slot . *U _qptr 1 ]
-[; ;messages.c: 39: qmsg = &(qptr->queue[slot]);
-"39
+[; ;messages.c: 37: qmsg = &(qptr->queue[slot]);
+"37
 [e = _qmsg &U *U + &U . *U _qptr 0 * -> _slot `ux -> -> # *U &U . *U _qptr 0 `ui `ux ]
-[; ;messages.c: 41: if (qmsg->full != 0) {
-"41
+[; ;messages.c: 39: if (qmsg->full != 0) {
+"39
 [e $ ! != -> . *U _qmsg 0 `i -> 0 `i 1031  ]
 {
-[; ;messages.c: 42: return (-1);
-"42
+[; ;messages.c: 40: return (-1);
+"40
 [e ) -> -U -> 1 `i `c ]
 [e $UE 1030  ]
-"43
+"41
 }
 [e :U 1031 ]
-[; ;messages.c: 43: }
-[; ;messages.c: 46: qmsg->length = length;
-"46
+[; ;messages.c: 41: }
+[; ;messages.c: 44: qmsg->length = length;
+"44
 [e = . *U _qmsg 1 _length ]
-[; ;messages.c: 47: qmsg->msgtype = msgtype;
-"47
+[; ;messages.c: 45: qmsg->msgtype = msgtype;
+"45
 [e = . *U _qmsg 2 _msgtype ]
-[; ;messages.c: 55: memcpy(qmsg->data, data, tlength);
-"55
+[; ;messages.c: 53: memcpy(qmsg->data, data, tlength);
+"53
 [e ( _memcpy (3 , , -> &U . *U _qmsg 3 `*v -> _data `*Cv _tlength ]
-[; ;messages.c: 56: qptr->cur_write_ind = (qptr->cur_write_ind + 1) % 4;
-"56
+[; ;messages.c: 54: qptr->cur_write_ind = (qptr->cur_write_ind + 1) % 4;
+"54
 [e = . *U _qptr 1 -> % + -> . *U _qptr 1 `i -> 1 `i -> 4 `i `uc ]
-[; ;messages.c: 59: qmsg->full = 1;
-"59
+[; ;messages.c: 57: qmsg->full = 1;
+"57
 [e = . *U _qmsg 0 -> -> 1 `i `uc ]
-[; ;messages.c: 60: return (1);
-"60
+[; ;messages.c: 58: return (1);
+"58
 [e ) -> -> 1 `i `c ]
 [e $UE 1030  ]
-[; ;messages.c: 61: }
-"61
+[; ;messages.c: 59: }
+"59
 [e :UE 1030 ]
 }
-"63
+"61
 [v _recv_msg `(c ~T0 @X0 1 ef4`*S1025`uc`*uc`*v ]
 {
-[; ;messages.c: 63: signed char recv_msg(msg_queue *qptr, unsigned char maxlength, unsigned char *msgtype, void *data) {
+[; ;messages.c: 61: signed char recv_msg(msg_queue *qptr, unsigned char maxlength, unsigned char *msgtype, void *data) {
 [e :U _recv_msg ]
 [v _qptr `*S1025 ~T0 @X0 1 r1 ]
 [v _maxlength `uc ~T0 @X0 1 r2 ]
 [v _msgtype `*uc ~T0 @X0 1 r3 ]
 [v _data `*v ~T0 @X0 1 r4 ]
 [f ]
-"64
+"62
 [v _slot `uc ~T0 @X0 1 a ]
-"68
+"66
 [v _qmsg `*S1024 ~T0 @X0 1 a ]
-"69
+"67
 [v _tlength `ui ~T0 @X0 1 a ]
-[; ;messages.c: 64: unsigned char slot;
-[; ;messages.c: 68: msg *qmsg;
-[; ;messages.c: 69: size_t tlength;
-[; ;messages.c: 72: slot = qptr->cur_read_ind;
-"72
+[; ;messages.c: 62: unsigned char slot;
+[; ;messages.c: 66: msg *qmsg;
+[; ;messages.c: 67: size_t tlength;
+[; ;messages.c: 70: slot = qptr->cur_read_ind;
+"70
 [e = _slot . *U _qptr 2 ]
-[; ;messages.c: 73: qmsg = &(qptr->queue[slot]);
-"73
+[; ;messages.c: 71: qmsg = &(qptr->queue[slot]);
+"71
 [e = _qmsg &U *U + &U . *U _qptr 0 * -> _slot `ux -> -> # *U &U . *U _qptr 0 `ui `ux ]
-[; ;messages.c: 74: if (qmsg->full == 1) {
-"74
+[; ;messages.c: 72: if (qmsg->full == 1) {
+"72
 [e $ ! == -> . *U _qmsg 0 `i -> 1 `i 1033  ]
 {
-[; ;messages.c: 76: if (qmsg->length > maxlength) {
-"76
+[; ;messages.c: 74: if (qmsg->length > maxlength) {
+"74
 [e $ ! > -> . *U _qmsg 1 `i -> _maxlength `i 1034  ]
 {
-[; ;messages.c: 77: return (-3);
-"77
+[; ;messages.c: 75: return (-3);
+"75
 [e ) -> -U -> 3 `i `c ]
 [e $UE 1032  ]
-"78
+"76
 }
 [e :U 1034 ]
-[; ;messages.c: 78: }
-[; ;messages.c: 80: tlength = qmsg->length;
-"80
+[; ;messages.c: 76: }
+[; ;messages.c: 78: tlength = qmsg->length;
+"78
 [e = _tlength -> . *U _qmsg 1 `ui ]
-[; ;messages.c: 81: memcpy(data, qmsg->data, tlength);
-"81
+[; ;messages.c: 79: memcpy(data, qmsg->data, tlength);
+"79
 [e ( _memcpy (3 , , _data -> &U . *U _qmsg 3 `*Cv _tlength ]
-[; ;messages.c: 87: qptr->cur_read_ind = (qptr->cur_read_ind + 1) % 4;
-"87
+[; ;messages.c: 85: qptr->cur_read_ind = (qptr->cur_read_ind + 1) % 4;
+"85
 [e = . *U _qptr 2 -> % + -> . *U _qptr 2 `i -> 1 `i -> 4 `i `uc ]
-[; ;messages.c: 89: (*msgtype) = qmsg->msgtype;
-"89
+[; ;messages.c: 87: (*msgtype) = qmsg->msgtype;
+"87
 [e = *U _msgtype . *U _qmsg 2 ]
-[; ;messages.c: 91: qmsg->full = 0;
-"91
+[; ;messages.c: 89: qmsg->full = 0;
+"89
 [e = . *U _qmsg 0 -> -> 0 `i `uc ]
-[; ;messages.c: 92: return (tlength);
-"92
+[; ;messages.c: 90: return (tlength);
+"90
 [e ) -> _tlength `c ]
 [e $UE 1032  ]
-"93
+"91
 }
-[; ;messages.c: 93: } else {
+[; ;messages.c: 91: } else {
 [e $U 1035  ]
 [e :U 1033 ]
 {
-[; ;messages.c: 94: return (-4);
-"94
+[; ;messages.c: 92: return (-4);
+"92
 [e ) -> -U -> 4 `i `c ]
 [e $UE 1032  ]
-"95
+"93
 }
 [e :U 1035 ]
-[; ;messages.c: 95: }
-[; ;messages.c: 96: }
-"96
+[; ;messages.c: 93: }
+[; ;messages.c: 94: }
+"94
 [e :UE 1032 ]
 }
-"101
+"99
 [v _ToMainLow_MQ `S1025 ~T0 @X0 1 s ]
-[; ;messages.c: 101: static msg_queue ToMainLow_MQ;
-"103
+[; ;messages.c: 99: static msg_queue ToMainLow_MQ;
+"101
 [v _ToMainLow_sendmsg `(c ~T0 @X0 1 ef3`uc`uc`*v ]
 {
-[; ;messages.c: 103: signed char ToMainLow_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+[; ;messages.c: 101: signed char ToMainLow_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
 [e :U _ToMainLow_sendmsg ]
 [v _length `uc ~T0 @X0 1 r1 ]
 [v _msgtype `uc ~T0 @X0 1 r2 ]
 [v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;messages.c: 109: return (send_msg(&ToMainLow_MQ, length, msgtype, data));
-"109
+[; ;messages.c: 107: return (send_msg(&ToMainLow_MQ, length, msgtype, data));
+"107
 [e ) ( _send_msg (4 , , , &U _ToMainLow_MQ _length _msgtype _data ]
 [e $UE 1036  ]
-[; ;messages.c: 110: }
-"110
+[; ;messages.c: 108: }
+"108
 [e :UE 1036 ]
 }
-"112
+"110
 [v _ToMainLow_recvmsg `(c ~T0 @X0 1 ef3`uc`*uc`*v ]
 {
-[; ;messages.c: 112: signed char ToMainLow_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+[; ;messages.c: 110: signed char ToMainLow_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
 [e :U _ToMainLow_recvmsg ]
 [v _maxlength `uc ~T0 @X0 1 r1 ]
 [v _msgtype `*uc ~T0 @X0 1 r2 ]
 [v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;messages.c: 118: return (recv_msg(&ToMainLow_MQ, maxlength, msgtype, data));
-"118
+[; ;messages.c: 116: return (recv_msg(&ToMainLow_MQ, maxlength, msgtype, data));
+"116
 [e ) ( _recv_msg (4 , , , &U _ToMainLow_MQ _maxlength _msgtype _data ]
 [e $UE 1037  ]
-[; ;messages.c: 119: }
-"119
+[; ;messages.c: 117: }
+"117
 [e :UE 1037 ]
 }
-"124
+"122
 [v _ToMainHigh_MQ `S1025 ~T0 @X0 1 s ]
-[; ;messages.c: 124: static msg_queue ToMainHigh_MQ;
-"126
+[; ;messages.c: 122: static msg_queue ToMainHigh_MQ;
+"124
 [v _ToMainHigh_sendmsg `(c ~T0 @X0 1 ef3`uc`uc`*v ]
 {
-[; ;messages.c: 126: signed char ToMainHigh_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+[; ;messages.c: 124: signed char ToMainHigh_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
 [e :U _ToMainHigh_sendmsg ]
 [v _length `uc ~T0 @X0 1 r1 ]
 [v _msgtype `uc ~T0 @X0 1 r2 ]
 [v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;messages.c: 132: return (send_msg(&ToMainHigh_MQ, length, msgtype, data));
-"132
+[; ;messages.c: 130: return (send_msg(&ToMainHigh_MQ, length, msgtype, data));
+"130
 [e ) ( _send_msg (4 , , , &U _ToMainHigh_MQ _length _msgtype _data ]
 [e $UE 1038  ]
-[; ;messages.c: 133: }
-"133
+[; ;messages.c: 131: }
+"131
 [e :UE 1038 ]
 }
-"135
+"133
 [v _ToMainHigh_recvmsg `(c ~T0 @X0 1 ef3`uc`*uc`*v ]
 {
-[; ;messages.c: 135: signed char ToMainHigh_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+[; ;messages.c: 133: signed char ToMainHigh_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
 [e :U _ToMainHigh_recvmsg ]
 [v _maxlength `uc ~T0 @X0 1 r1 ]
 [v _msgtype `*uc ~T0 @X0 1 r2 ]
 [v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;messages.c: 141: return (recv_msg(&ToMainHigh_MQ, maxlength, msgtype, data));
-"141
+[; ;messages.c: 139: return (recv_msg(&ToMainHigh_MQ, maxlength, msgtype, data));
+"139
 [e ) ( _recv_msg (4 , , , &U _ToMainHigh_MQ _maxlength _msgtype _data ]
 [e $UE 1039  ]
-[; ;messages.c: 142: }
-"142
+[; ;messages.c: 140: }
+"140
 [e :UE 1039 ]
 }
-"148
+"146
 [v _FromMainLow_MQ `S1025 ~T0 @X0 1 s ]
-[; ;messages.c: 148: static msg_queue FromMainLow_MQ;
-"150
+[; ;messages.c: 146: static msg_queue FromMainLow_MQ;
+"148
 [v _FromMainLow_sendmsg `(c ~T0 @X0 1 ef3`uc`uc`*v ]
 {
-[; ;messages.c: 150: signed char FromMainLow_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+[; ;messages.c: 148: signed char FromMainLow_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
 [e :U _FromMainLow_sendmsg ]
 [v _length `uc ~T0 @X0 1 r1 ]
 [v _msgtype `uc ~T0 @X0 1 r2 ]
 [v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;messages.c: 156: return (send_msg(&FromMainLow_MQ, length, msgtype, data));
-"156
+[; ;messages.c: 154: return (send_msg(&FromMainLow_MQ, length, msgtype, data));
+"154
 [e ) ( _send_msg (4 , , , &U _FromMainLow_MQ _length _msgtype _data ]
 [e $UE 1040  ]
-[; ;messages.c: 157: }
-"157
+[; ;messages.c: 155: }
+"155
 [e :UE 1040 ]
 }
-"159
+"157
 [v _FromMainLow_recvmsg `(c ~T0 @X0 1 ef3`uc`*uc`*v ]
 {
-[; ;messages.c: 159: signed char FromMainLow_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+[; ;messages.c: 157: signed char FromMainLow_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
 [e :U _FromMainLow_recvmsg ]
 [v _maxlength `uc ~T0 @X0 1 r1 ]
 [v _msgtype `*uc ~T0 @X0 1 r2 ]
 [v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;messages.c: 165: return (recv_msg(&FromMainLow_MQ, maxlength, msgtype, data));
-"165
+[; ;messages.c: 163: return (recv_msg(&FromMainLow_MQ, maxlength, msgtype, data));
+"163
 [e ) ( _recv_msg (4 , , , &U _FromMainLow_MQ _maxlength _msgtype _data ]
 [e $UE 1041  ]
-[; ;messages.c: 166: }
-"166
+[; ;messages.c: 164: }
+"164
 [e :UE 1041 ]
 }
-"172
+"170
 [v _FromMainHigh_MQ `S1025 ~T0 @X0 1 s ]
-[; ;messages.c: 172: static msg_queue FromMainHigh_MQ;
-"174
+[; ;messages.c: 170: static msg_queue FromMainHigh_MQ;
+"172
 [v _FromMainHigh_sendmsg `(c ~T0 @X0 1 ef3`uc`uc`*v ]
 {
-[; ;messages.c: 174: signed char FromMainHigh_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+[; ;messages.c: 172: signed char FromMainHigh_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
 [e :U _FromMainHigh_sendmsg ]
 [v _length `uc ~T0 @X0 1 r1 ]
 [v _msgtype `uc ~T0 @X0 1 r2 ]
 [v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;messages.c: 180: return (send_msg(&FromMainHigh_MQ, length, msgtype, data));
-"180
+[; ;messages.c: 178: return (send_msg(&FromMainHigh_MQ, length, msgtype, data));
+"178
 [e ) ( _send_msg (4 , , , &U _FromMainHigh_MQ _length _msgtype _data ]
 [e $UE 1042  ]
-[; ;messages.c: 181: }
-"181
+[; ;messages.c: 179: }
+"179
 [e :UE 1042 ]
 }
-"183
+"181
 [v _FromMainHigh_recvmsg `(c ~T0 @X0 1 ef3`uc`*uc`*v ]
 {
-[; ;messages.c: 183: signed char FromMainHigh_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+[; ;messages.c: 181: signed char FromMainHigh_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
 [e :U _FromMainHigh_recvmsg ]
 [v _maxlength `uc ~T0 @X0 1 r1 ]
 [v _msgtype `*uc ~T0 @X0 1 r2 ]
 [v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;messages.c: 189: return (recv_msg(&FromMainHigh_MQ, maxlength, msgtype, data));
-"189
+[; ;messages.c: 187: return (recv_msg(&FromMainHigh_MQ, maxlength, msgtype, data));
+"187
 [e ) ( _recv_msg (4 , , , &U _FromMainHigh_MQ _maxlength _msgtype _data ]
 [e $UE 1043  ]
-[; ;messages.c: 190: }
-"190
+[; ;messages.c: 188: }
+"188
 [e :UE 1043 ]
 }
-"192
+"190
 [v _MQ_Main_Willing_to_block `uc ~T0 @X0 1 s ]
-[; ;messages.c: 192: static unsigned char MQ_Main_Willing_to_block;
-"194
+[; ;messages.c: 190: static unsigned char MQ_Main_Willing_to_block;
+"192
 [v _init_queues `(v ~T0 @X0 1 ef ]
 {
-[; ;messages.c: 194: void init_queues() {
+[; ;messages.c: 192: void init_queues() {
 [e :U _init_queues ]
 [f ]
-[; ;messages.c: 195: MQ_Main_Willing_to_block = 0;
-"195
+[; ;messages.c: 193: MQ_Main_Willing_to_block = 0;
+"193
 [e = _MQ_Main_Willing_to_block -> -> 0 `i `uc ]
-[; ;messages.c: 196: init_queue(&ToMainLow_MQ);
-"196
+[; ;messages.c: 194: init_queue(&ToMainLow_MQ);
+"194
 [e ( _init_queue (1 &U _ToMainLow_MQ ]
-[; ;messages.c: 197: init_queue(&ToMainHigh_MQ);
-"197
+[; ;messages.c: 195: init_queue(&ToMainHigh_MQ);
+"195
 [e ( _init_queue (1 &U _ToMainHigh_MQ ]
-[; ;messages.c: 198: init_queue(&FromMainLow_MQ);
-"198
+[; ;messages.c: 196: init_queue(&FromMainLow_MQ);
+"196
 [e ( _init_queue (1 &U _FromMainLow_MQ ]
-[; ;messages.c: 199: init_queue(&FromMainHigh_MQ);
-"199
+[; ;messages.c: 197: init_queue(&FromMainHigh_MQ);
+"197
 [e ( _init_queue (1 &U _FromMainHigh_MQ ]
-[; ;messages.c: 200: }
-"200
+[; ;messages.c: 198: }
+"198
 [e :UE 1044 ]
 }
-"202
+"200
 [v _enter_sleep_mode `(v ~T0 @X0 1 ef ]
 {
-[; ;messages.c: 202: void enter_sleep_mode(void) {
+[; ;messages.c: 200: void enter_sleep_mode(void) {
 [e :U _enter_sleep_mode ]
 [f ]
-[; ;messages.c: 204: OSCCONbits.IDLEN = 1;
-"204
+[; ;messages.c: 202: OSCCONbits.IDLEN = 1;
+"202
 [e = . . _OSCCONbits 0 4 -> -> 1 `i `uc ]
-"213
+"211
 [; <"     SLEEP ;# ">
-"214
-"215
-[; <" # 214 ;# ">
-[; ;messages.c: 218: }
-"218
+"212
+"213
+[; <" # 212 ;# ">
+[; ;messages.c: 216: }
+"216
 [e :UE 1045 ]
 }
-"222
+"220
 [v _check_msg `(uc ~T0 @X0 1 ef1`*S1025 ]
 {
-[; ;messages.c: 222: unsigned char check_msg(msg_queue *qptr) {
+[; ;messages.c: 220: unsigned char check_msg(msg_queue *qptr) {
 [e :U _check_msg ]
 [v _qptr `*S1025 ~T0 @X0 1 r1 ]
 [f ]
-[; ;messages.c: 223: return (qptr->queue[qptr->cur_read_ind].full);
-"223
+[; ;messages.c: 221: return (qptr->queue[qptr->cur_read_ind].full);
+"221
 [e ) . *U + &U . *U _qptr 0 * -> . *U _qptr 2 `ux -> -> # *U &U . *U _qptr 0 `ui `ux 0 ]
 [e $UE 1046  ]
-[; ;messages.c: 224: }
-"224
+[; ;messages.c: 222: }
+"222
 [e :UE 1046 ]
 }
-"228
+"226
 [v _SleepIfOkay `(v ~T0 @X0 1 ef ]
 {
-[; ;messages.c: 228: void SleepIfOkay() {
+[; ;messages.c: 226: void SleepIfOkay() {
 [e :U _SleepIfOkay ]
 [f ]
-[; ;messages.c: 230: if (MQ_Main_Willing_to_block == 0) {
-"230
+[; ;messages.c: 228: if (MQ_Main_Willing_to_block == 0) {
+"228
 [e $ ! == -> _MQ_Main_Willing_to_block `i -> 0 `i 1048  ]
 {
-[; ;messages.c: 231: return;
-"231
+[; ;messages.c: 229: return;
+"229
 [e $UE 1047  ]
-"232
+"230
 }
 [e :U 1048 ]
-[; ;messages.c: 232: }
-[; ;messages.c: 235: if (in_low_int()) {
-"235
+[; ;messages.c: 230: }
+[; ;messages.c: 233: if (in_low_int()) {
+"233
 [e $ ! != ( _in_low_int ..  -> 0 `i 1049  ]
 {
-[; ;messages.c: 236: return;
-"236
+[; ;messages.c: 234: return;
+"234
 [e $UE 1047  ]
-"237
+"235
 }
 [e :U 1049 ]
-[; ;messages.c: 237: }
-[; ;messages.c: 240: if (!in_high_int()) {
-"240
+[; ;messages.c: 235: }
+[; ;messages.c: 238: if (!in_high_int()) {
+"238
 [e $ ! ! != ( _in_high_int ..  -> 0 `i 1050  ]
 {
-[; ;messages.c: 241: return;
-"241
+[; ;messages.c: 239: return;
+"239
 [e $UE 1047  ]
-"242
+"240
 }
 [e :U 1050 ]
-[; ;messages.c: 242: }
-[; ;messages.c: 247: if (check_msg(&ToMainHigh_MQ)) {
-"247
+[; ;messages.c: 240: }
+[; ;messages.c: 245: if (check_msg(&ToMainHigh_MQ)) {
+"245
 [e $ ! != -> ( _check_msg (1 &U _ToMainHigh_MQ `i -> -> -> 0 `i `uc `i 1051  ]
 {
-[; ;messages.c: 248: return;
-"248
+[; ;messages.c: 246: return;
+"246
 [e $UE 1047  ]
-"249
+"247
 }
 [e :U 1051 ]
-[; ;messages.c: 249: }
-[; ;messages.c: 250: if (check_msg(&ToMainLow_MQ)) {
-"250
+[; ;messages.c: 247: }
+[; ;messages.c: 248: if (check_msg(&ToMainLow_MQ)) {
+"248
 [e $ ! != -> ( _check_msg (1 &U _ToMainLow_MQ `i -> -> -> 0 `i `uc `i 1052  ]
 {
-[; ;messages.c: 251: return;
-"251
+[; ;messages.c: 249: return;
+"249
 [e $UE 1047  ]
-"252
+"250
 }
 [e :U 1052 ]
-[; ;messages.c: 252: }
-[; ;messages.c: 253: enter_sleep_mode();
-"253
+[; ;messages.c: 250: }
+[; ;messages.c: 251: enter_sleep_mode();
+"251
 [e ( _enter_sleep_mode ..  ]
-[; ;messages.c: 254: }
-"254
+[; ;messages.c: 252: }
+"252
 [e :UE 1047 ]
 }
-"258
+"256
 [v _block_on_To_msgqueues `(v ~T0 @X0 1 ef ]
 {
-[; ;messages.c: 258: void block_on_To_msgqueues() {
+[; ;messages.c: 256: void block_on_To_msgqueues() {
 [e :U _block_on_To_msgqueues ]
 [f ]
-[; ;messages.c: 259: if (!in_main()) {
-"259
+[; ;messages.c: 257: if (!in_main()) {
+"257
 [e $ ! ! != ( _in_main ..  -> 0 `i 1054  ]
 {
-[; ;messages.c: 260: return;
-"260
+[; ;messages.c: 258: return;
+"258
 [e $UE 1053  ]
-"261
+"259
 }
 [e :U 1054 ]
-[; ;messages.c: 261: }
-[; ;messages.c: 263: MQ_Main_Willing_to_block = 1;
-"263
+[; ;messages.c: 259: }
+[; ;messages.c: 261: MQ_Main_Willing_to_block = 1;
+"261
 [e = _MQ_Main_Willing_to_block -> -> 1 `i `uc ]
-[; ;messages.c: 264: while (1) {
-"264
+[; ;messages.c: 262: while (1) {
+"262
 [e :U 1056 ]
 {
-[; ;messages.c: 265: if (check_msg(&ToMainHigh_MQ)) {
-"265
+[; ;messages.c: 263: if (check_msg(&ToMainHigh_MQ)) {
+"263
 [e $ ! != -> ( _check_msg (1 &U _ToMainHigh_MQ `i -> -> -> 0 `i `uc `i 1058  ]
 {
-[; ;messages.c: 266: MQ_Main_Willing_to_block = 0;
-"266
+[; ;messages.c: 264: MQ_Main_Willing_to_block = 0;
+"264
 [e = _MQ_Main_Willing_to_block -> -> 0 `i `uc ]
-[; ;messages.c: 270: return;
-"270
+[; ;messages.c: 268: return;
+"268
 [e $UE 1053  ]
-"271
+"269
 }
 [e :U 1058 ]
-[; ;messages.c: 271: }
-[; ;messages.c: 272: if (check_msg(&ToMainLow_MQ)) {
-"272
+[; ;messages.c: 269: }
+[; ;messages.c: 270: if (check_msg(&ToMainLow_MQ)) {
+"270
 [e $ ! != -> ( _check_msg (1 &U _ToMainLow_MQ `i -> -> -> 0 `i `uc `i 1059  ]
 {
-[; ;messages.c: 273: MQ_Main_Willing_to_block = 0;
-"273
+[; ;messages.c: 271: MQ_Main_Willing_to_block = 0;
+"271
 [e = _MQ_Main_Willing_to_block -> -> 0 `i `uc ]
-[; ;messages.c: 277: return;
-"277
+[; ;messages.c: 275: return;
+"275
 [e $UE 1053  ]
-"278
+"276
 }
 [e :U 1059 ]
-[; ;messages.c: 278: }
-[; ;messages.c: 279: Delay1KTCYx(10);
-"279
+[; ;messages.c: 276: }
+[; ;messages.c: 277: Delay1KTCYx(10);
+"277
 [e ( _Delay1KTCYx (1 -> -> 10 `i `uc ]
-"283
+"281
 }
 [e :U 1055 ]
-"264
+"262
 [e $U 1056  ]
 [e :U 1057 ]
-[; ;messages.c: 283: }
-[; ;messages.c: 284: }
-"284
+[; ;messages.c: 281: }
+[; ;messages.c: 282: }
+"282
 [e :UE 1053 ]
 }

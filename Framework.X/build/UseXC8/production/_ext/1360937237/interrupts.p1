@@ -1,4 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
+[s S1028 `uc 1 `uc -> 10 `i ]
+[n S1028 __msgarr length data ]
 [s S844 :1 `uc 1 ]
 [n S844 . NOT_BOR ]
 [s S845 :1 `uc 1 :1 `uc 1 ]
@@ -17,7 +19,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S851 . BOR POR PD TO RI CM ]
 [u S843 `S844 1 `S845 1 `S846 1 `S847 1 `S848 1 `S849 1 `S850 1 `S851 1 ]
 [n S843 . . . . . . . . . ]
-"13264 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"13264 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [v _RCONbits `VS843 ~T0 @X0 0 e@4048 ]
 [s S948 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S948 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
@@ -41,7 +43,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S514 . . . ]
 "7542
 [v _PIR1bits `VS514 ~T0 @X0 0 e@3998 ]
-"33 ../src/my_i2c.h
+"41 ../src/my_i2c.h
 [v _i2c_int_handler `(v ~T0 @X0 0 ef ]
 "10 ../src/user_interrupts.h
 [v _timer0_int_handler `(v ~T0 @X0 0 ef ]
@@ -54,7 +56,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "16 ../src/my_uart.h
 [v _uart_recv_int_handler `(v ~T0 @X0 0 ef ]
 [; ;pic18f26j50.h: 44: extern volatile unsigned char RPOR0 @ 0xEC6;
-"46 /Applications/microchip/xc8/v1.12/include/pic18f26j50.h
+"46 C:\Program Files (x86)\Microchip\xc8\v1.12\include\pic18f26j50.h
 [; ;pic18f26j50.h: 46: asm("RPOR0 equ 0EC6h");
 [; <" RPOR0 equ 0EC6h ;# ">
 [; ;pic18f26j50.h: 50: extern volatile unsigned char RPOR1 @ 0xEC7;
@@ -7584,13 +7586,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_i2c.h: 16: unsigned char outbufind;
 [; ;my_i2c.h: 17: unsigned char slave_addr;
 [; ;my_i2c.h: 18: } i2c_comm;
-[; ;my_i2c.h: 32: void init_i2c(i2c_comm *);
-[; ;my_i2c.h: 33: void i2c_int_handler(void);
-[; ;my_i2c.h: 34: void start_i2c_slave_reply(unsigned char,unsigned char *);
-[; ;my_i2c.h: 35: void i2c_configure_slave(unsigned char);
-[; ;my_i2c.h: 36: void i2c_configure_master(unsigned char);
-[; ;my_i2c.h: 37: unsigned char i2c_master_send(unsigned char,unsigned char *);
-[; ;my_i2c.h: 38: unsigned char i2c_master_recv(unsigned char);
+[; ;my_i2c.h: 20: typedef struct __msgarr {
+[; ;my_i2c.h: 21: unsigned char length;
+[; ;my_i2c.h: 22: unsigned char data[10];
+[; ;my_i2c.h: 23: } i2cmsg;
+"38 ../src/my_i2c.h
+[v _i2c_addressable_registers `S1028 ~T0 @X0 -> 4 `i e ]
+[; ;my_i2c.h: 38: i2cmsg i2c_addressable_registers[4];
+[; ;my_i2c.h: 40: void init_i2c(i2c_comm *);
+[; ;my_i2c.h: 41: void i2c_int_handler(void);
+[; ;my_i2c.h: 42: void start_i2c_slave_reply(unsigned char length,unsigned char *msg);
+[; ;my_i2c.h: 43: void i2c_configure_slave(unsigned char);
+[; ;my_i2c.h: 44: void i2c_configure_master(unsigned char);
+[; ;my_i2c.h: 45: unsigned char i2c_master_send(unsigned char,unsigned char *);
+[; ;my_i2c.h: 46: unsigned char i2c_master_recv(unsigned char);
 "14 ../src/interrupts.c
 [v _enable_interrupts `(v ~T0 @X0 1 ef ]
 {
@@ -7608,7 +7617,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
 [; ;interrupts.c: 20: }
 "20
-[e :UE 1028 ]
+[e :UE 1029 ]
 }
 "22
 [v _in_high_int `(i ~T0 @X0 1 ef ]
@@ -7619,10 +7628,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupts.c: 23: return (!INTCONbits.GIEH);
 "23
 [e ) -> ! != -> . . _INTCONbits 2 2 `i -> -> -> 0 `i `Vuc `i `i ]
-[e $UE 1029  ]
+[e $UE 1030  ]
 [; ;interrupts.c: 24: }
 "24
-[e :UE 1029 ]
+[e :UE 1030 ]
 }
 "26
 [v _low_int_active `(i ~T0 @X0 1 ef ]
@@ -7633,10 +7642,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupts.c: 27: return (!INTCONbits.GIEL);
 "27
 [e ) -> ! != -> . . _INTCONbits 2 1 `i -> -> -> 0 `i `Vuc `i `i ]
-[e $UE 1030  ]
+[e $UE 1031  ]
 [; ;interrupts.c: 28: }
 "28
-[e :UE 1030 ]
+[e :UE 1031 ]
 }
 "30
 [v _in_low_int `(i ~T0 @X0 1 ef ]
@@ -7646,41 +7655,41 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;interrupts.c: 31: if (INTCONbits.GIEL == 1) {
 "31
-[e $ ! == -> . . _INTCONbits 2 1 `i -> 1 `i 1032  ]
+[e $ ! == -> . . _INTCONbits 2 1 `i -> 1 `i 1033  ]
 {
 [; ;interrupts.c: 32: return (0);
 "32
 [e ) -> 0 `i ]
-[e $UE 1031  ]
+[e $UE 1032  ]
 "33
 }
 [; ;interrupts.c: 33: } else if (in_high_int()) {
-[e $U 1033  ]
-[e :U 1032 ]
-[e $ ! != ( _in_high_int ..  -> 0 `i 1034  ]
+[e $U 1034  ]
+[e :U 1033 ]
+[e $ ! != ( _in_high_int ..  -> 0 `i 1035  ]
 {
 [; ;interrupts.c: 34: return (0);
 "34
 [e ) -> 0 `i ]
-[e $UE 1031  ]
+[e $UE 1032  ]
 "35
 }
 [; ;interrupts.c: 35: } else {
-[e $U 1035  ]
-[e :U 1034 ]
+[e $U 1036  ]
+[e :U 1035 ]
 {
 [; ;interrupts.c: 36: return (1);
 "36
 [e ) -> 1 `i ]
-[e $UE 1031  ]
+[e $UE 1032  ]
 "37
 }
-[e :U 1035 ]
-[e :U 1033 ]
+[e :U 1036 ]
+[e :U 1034 ]
 [; ;interrupts.c: 37: }
 [; ;interrupts.c: 38: }
 "38
-[e :UE 1031 ]
+[e :UE 1032 ]
 }
 "40
 [v _in_main `(i ~T0 @X0 1 ef ]
@@ -7690,33 +7699,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;interrupts.c: 41: if ((!in_low_int()) && (!in_high_int())) {
 "41
-[e $ ! && ! != ( _in_low_int ..  -> 0 `i ! != ( _in_high_int ..  -> 0 `i 1037  ]
+[e $ ! && ! != ( _in_low_int ..  -> 0 `i ! != ( _in_high_int ..  -> 0 `i 1038  ]
 {
 [; ;interrupts.c: 42: return (1);
 "42
 [e ) -> 1 `i ]
-[e $UE 1036  ]
+[e $UE 1037  ]
 "43
 }
 [; ;interrupts.c: 43: } else {
-[e $U 1038  ]
-[e :U 1037 ]
+[e $U 1039  ]
+[e :U 1038 ]
 {
 [; ;interrupts.c: 44: return (0);
 "44
 [e ) -> 0 `i ]
-[e $UE 1036  ]
+[e $UE 1037  ]
 "45
 }
-[e :U 1038 ]
+[e :U 1039 ]
 [; ;interrupts.c: 45: }
 [; ;interrupts.c: 46: }
 "46
-[e :UE 1036 ]
+[e :UE 1037 ]
 }
 "83
-[v F8188 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerHigh `IF8188 ~T0 @X0 1 e ]
+[v F8193 `(v ~T0 @X0 1 tf ]
+[v _InterruptHandlerHigh `IF8193 ~T0 @X0 1 e ]
 {
 [; ;interrupts.c: 78: interrupt
 [; ;interrupts.c: 83: void InterruptHandlerHigh() {
@@ -7724,7 +7733,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;interrupts.c: 88: if (PIR1bits.SSPIF) {
 "88
-[e $ ! != -> . . _PIR1bits 1 1 `i -> -> -> 0 `i `Vuc `i 1040  ]
+[e $ ! != -> . . _PIR1bits 1 1 `i -> -> -> 0 `i `Vuc `i 1041  ]
 {
 [; ;interrupts.c: 90: PIR1bits.SSPIF = 0;
 "90
@@ -7734,11 +7743,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _i2c_int_handler ..  ]
 "93
 }
-[e :U 1040 ]
+[e :U 1041 ]
 [; ;interrupts.c: 93: }
 [; ;interrupts.c: 96: if (INTCONbits.TMR0IF) {
 "96
-[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 1041  ]
+[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 1042  ]
 {
 [; ;interrupts.c: 97: INTCONbits.TMR0IF = 0;
 "97
@@ -7748,29 +7757,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _timer0_int_handler ..  ]
 "100
 }
-[e :U 1041 ]
+[e :U 1042 ]
 [; ;interrupts.c: 100: }
 [; ;interrupts.c: 103: if (PIR1bits.ADIF) {
 "103
-[e $ ! != -> . . _PIR1bits 0 6 `i -> -> -> 0 `i `Vuc `i 1042  ]
+[e $ ! != -> . . _PIR1bits 0 6 `i -> -> -> 0 `i `Vuc `i 1043  ]
 {
 [; ;interrupts.c: 104: adcIntHandler();
 "104
 [e ( _adcIntHandler ..  ]
 "105
 }
-[e :U 1042 ]
+[e :U 1043 ]
 [; ;interrupts.c: 105: }
 [; ;interrupts.c: 114: SleepIfOkay();
 "114
 [e ( _SleepIfOkay ..  ]
 [; ;interrupts.c: 115: }
 "115
-[e :UE 1039 ]
+[e :UE 1040 ]
 }
 "127
-[v F8190 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerLow `ILF8190 ~T0 @X0 1 e ]
+[v F8195 `(v ~T0 @X0 1 tf ]
+[v _InterruptHandlerLow `ILF8195 ~T0 @X0 1 e ]
 {
 [; ;interrupts.c: 122: interrupt low_priority
 [; ;interrupts.c: 127: void InterruptHandlerLow() {
@@ -7778,7 +7787,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;interrupts.c: 129: if (PIR1bits.TMR1IF) {
 "129
-[e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 1044  ]
+[e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 1045  ]
 {
 [; ;interrupts.c: 130: PIR1bits.TMR1IF = 0;
 "130
@@ -7788,11 +7797,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _timer1_int_handler ..  ]
 "132
 }
-[e :U 1044 ]
+[e :U 1045 ]
 [; ;interrupts.c: 132: }
 [; ;interrupts.c: 135: if (PIR1bits.RCIF) {
 "135
-[e $ ! != -> . . _PIR1bits 1 3 `i -> -> -> 0 `i `Vuc `i 1045  ]
+[e $ ! != -> . . _PIR1bits 1 3 `i -> -> -> 0 `i `Vuc `i 1046  ]
 {
 [; ;interrupts.c: 136: PIR1bits.RCIF = 0;
 "136
@@ -7802,9 +7811,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _uart_recv_int_handler ..  ]
 "138
 }
-[e :U 1045 ]
+[e :U 1046 ]
 [; ;interrupts.c: 138: }
 [; ;interrupts.c: 139: }
 "139
-[e :UE 1043 ]
+[e :UE 1044 ]
 }
