@@ -35,12 +35,14 @@ void adcInit() {
 void adcIntHandler() {
 
     //ADC output
-    float res  = (int)(ADRESH << 8) | (int)ADRESL;
-    res = res / 0xFFC0;  //Normalize 10-bit max
+    unsigned short res  = (short)(ADRESH << 8) | (short)ADRESL;
+    res >>= 6;
+    res = (float)res * (float)0xFFFF / (float)0x3FF;
+//    res = res / 0xFFC0;  //Normalize 10-bit max
 
-    unsigned short output = res * (float)0xFFFF;
+//    unsigned short output = res * (float)0xFFFF;
 
-    ToMainLow_sendmsg(sizeof(short), MSG_ADC_DATA, &output);
+    ToMainLow_sendmsg(sizeof(short), MSG_ADC_DATA, &res);
 
     //Clear ADC
     PIR1bits.ADIF = 0;
