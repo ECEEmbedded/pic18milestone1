@@ -7549,6 +7549,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;xlcd.h: 142: extern void DelayXLCD(void);
 [; ;adcHelper.h: 20: void adcInit();
 [; ;adcHelper.h: 28: void adcIntHandler();
+[; ;adcHelper.h: 37: void adcReadyNextRead();
 [; ;messages.h: 10: typedef struct __msg {
 [; ;messages.h: 11: unsigned char full;
 [; ;messages.h: 12: unsigned char length;
@@ -7624,29 +7625,39 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 1026 ]
 }
 "35
+[v _adcReadyNextRead `(v ~T0 @X0 1 ef ]
+{
+[; ;adcHelper.c: 35: void adcReadyNextRead() {
+[e :U _adcReadyNextRead ]
+[f ]
+[; ;adcHelper.c: 36: ADCON0bits.GODONE = 1;
+"36
+[e = . . _ADCON0bits 8 1 -> -> 1 `i `uc ]
+[; ;adcHelper.c: 37: }
+"37
+[e :UE 1027 ]
+}
+"39
 [v _adcIntHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;adcHelper.c: 35: void adcIntHandler() {
+[; ;adcHelper.c: 39: void adcIntHandler() {
 [e :U _adcIntHandler ]
 [f ]
-"38
-[v _res `f ~T0 @X0 1 a ]
-[; ;adcHelper.c: 38: float res = (int)(ADRESH << 8) | (int)ADRESL;
-[e = _res -> | << -> _ADRESH `i -> 8 `i -> _ADRESL `i `f ]
-[; ;adcHelper.c: 39: res = res / 0xFFC0;
-"39
-[e = _res / _res -> -> 65472 `ui `f ]
-"41
-[v _output `us ~T0 @X0 1 a ]
-[; ;adcHelper.c: 41: unsigned short output = res * (float)0xFFFF;
-[e = _output -> * _res -> -> 65535 `ui `f `us ]
-[; ;adcHelper.c: 43: ToMainLow_sendmsg(sizeof(short), 50, &output);
-"43
-[e ( _ToMainLow_sendmsg (3 , , -> -> # `s `ui `uc -> -> 50 `i `uc -> &U _output `*v ]
-[; ;adcHelper.c: 46: PIR1bits.ADIF = 0;
-"46
+"42
+[v _res `us ~T0 @X0 1 a ]
+[; ;adcHelper.c: 42: unsigned short res = (short)(ADRESH << 8) | (short)ADRESL;
+[e = _res -> | -> -> << -> _ADRESH `i -> 8 `i `s `i -> -> _ADRESL `s `i `us ]
+"44
+[v _reading `uc ~T0 @X0 1 a ]
+[; ;adcHelper.c: 44: unsigned char reading = res >> 8;
+[e = _reading -> >> -> _res `ui -> 8 `i `uc ]
+[; ;adcHelper.c: 50: ToMainLow_sendmsg(sizeof(char), 50, &reading);
+"50
+[e ( _ToMainLow_sendmsg (3 , , -> -> # `uc `ui `uc -> -> 50 `i `uc -> &U _reading `*v ]
+[; ;adcHelper.c: 53: PIR1bits.ADIF = 0;
+"53
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-[; ;adcHelper.c: 47: }
-"47
-[e :UE 1027 ]
+[; ;adcHelper.c: 54: }
+"54
+[e :UE 1028 ]
 }

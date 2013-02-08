@@ -39,7 +39,7 @@ i2cmsg i2c_addressable_registers[I2C_REG_COUNT]; // 0 is 0xA8, 1 is 0xA9, ect.
 
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
-void start_i2c_slave_reply(unsigned char length,unsigned char *msg);
+void start_i2c_slave_reply(/*unsigned char length,unsigned char *msg*/);
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);

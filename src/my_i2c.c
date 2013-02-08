@@ -55,12 +55,16 @@ unsigned char i2c_master_recv(unsigned char length) {
 
 #endif
 
-void start_i2c_slave_reply(unsigned char length, unsigned char *msg) {
+void start_i2c_slave_reply(/*unsigned char length, unsigned char *msg*/) {
 
-    for (ic_ptr->outbuflen = 0; ic_ptr->outbuflen < length; ic_ptr->outbuflen++) {
-        ic_ptr->outbuffer[ic_ptr->outbuflen] = msg[ic_ptr->outbuflen];
-    }
-    ic_ptr->outbuflen = length;
+    const unsigned char msgType;
+//    const unsigned char buffer[MSGLEN];
+    ic_ptr->outbuflen = FromMainLow_recvmsg(MSGLEN, msgType, ic_ptr->outbuffer);
+
+//    for (ic_ptr->outbuflen = 0; ic_ptr->outbuflen < length; ic_ptr->outbuflen++) {
+//        ic_ptr->outbuffer[ic_ptr->outbuflen] = buffer[ic_ptr->outbuflen];
+//    }
+//    ic_ptr->outbuflen = length;
     ic_ptr->outbufind = 1; // point to the second byte to be sent
 
     // put the first byte into the I2C peripheral
@@ -262,7 +266,8 @@ void i2c_int_handler() {
     }
     if (msg_to_send) {
         // send to the queue to *ask* for the data to be sent out
-        ToMainHigh_sendmsg(0, MSGT_I2C_RQST, (void *) ic_ptr->buffer);
+//        ToMainHigh_sendmsg(0, MSGT_I2C_RQST, (void *) ic_ptr->buffer);
+        start_i2c_slave_reply();
         msg_to_send = 0;
     }
 }

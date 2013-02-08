@@ -9701,6 +9701,9 @@ void adcInit();
 # 28
 void adcIntHandler();
 
+# 37
+void adcReadyNextRead();
+
 # 10 "../src/messages.h"
 typedef struct __msg {
 unsigned char full;
@@ -9773,15 +9776,19 @@ PIR1bits.ADIF = 0;
 PIE1bits.ADIE = 1;
 }
 
+void adcReadyNextRead() {
+ADCON0bits.GODONE = 1;
+}
+
 void adcIntHandler() {
 
 
-float res = (int)(ADRESH << 8) | (int)ADRESL;
-res = res / 0xFFC0;
+unsigned short res = (short)(ADRESH << 8) | (short)ADRESL;
 
-unsigned short output = res * (float)0xFFFF;
+unsigned char reading = res >> 8;
 
-ToMainLow_sendmsg(sizeof(short), 50, &output);
+# 50
+ToMainLow_sendmsg(sizeof(char), 50, &reading);
 
 
 PIR1bits.ADIF = 0;

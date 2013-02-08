@@ -9701,6 +9701,9 @@ void adcInit();
 # 28
 void adcIntHandler();
 
+# 37
+void adcReadyNextRead();
+
 # 14 "../src/interrupts.h"
 void enable_interrupts(void);
 
@@ -9792,7 +9795,7 @@ i2cmsg i2c_addressable_registers[4];
 
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
-void start_i2c_slave_reply(unsigned char length,unsigned char *msg);
+void start_i2c_slave_reply( );
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);

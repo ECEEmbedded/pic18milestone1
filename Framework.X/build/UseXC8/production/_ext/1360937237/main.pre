@@ -9701,6 +9701,9 @@ void adcInit();
 # 28
 void adcIntHandler();
 
+# 37
+void adcReadyNextRead();
+
 # 7 "C:\Program Files (x86)\Microchip\xc8\v1.12\include\stdarg.h"
 typedef void * va_list[1];
 
@@ -9850,7 +9853,7 @@ i2cmsg i2c_addressable_registers[4];
 
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
-void start_i2c_slave_reply(unsigned char length,unsigned char *msg);
+void start_i2c_slave_reply( );
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
@@ -9923,6 +9926,10 @@ int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
 
 # 124
 void main(void) {
+
+unsigned char ADCbufferI2C[8];
+unsigned char ADCBufferLen;
+
 char c;
 signed char length;
 unsigned char msgtype;
@@ -9935,11 +9942,11 @@ uart_thread_struct uthread_data;
 timer1_thread_struct t1thread_data;
 timer0_thread_struct t0thread_data;
 
-# 147
+# 151
 OSCCON = 0xE0;
 OSCTUNEbits.PLLEN = 1;
 
-# 156
+# 160
 init_uart_recv(&uc);
 
 
@@ -9951,23 +9958,23 @@ init_timer1_lthread(&t1thread_data);
 
 init_queues();
 
-# 183
+# 187
 OpenTimer0(0b11111111 & 0b10111111 & 0b11011111 & 0b11110110);
 
 
 OpenTimer1(0b11111111 & 0b10011111 & 0b11111111 & 0b11111111 & 0b11111011 & 0b11111111,0x0);
 
-# 194
+# 198
 IPR1bits.TMR1IP = 0;
 
 IPR1bits.RCIP = 0;
 
 IPR1bits.SSPIP = 1;
 
-# 207
+# 211
 i2c_configure_slave(0x9E);
 
-# 222
+# 226
 PIE1bits.SSPIE = 1;
 
 
@@ -9975,13 +9982,13 @@ PIE1bits.SSPIE = 1;
 Open1USART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
 0b11111111 & 0b11101111, 0x19);
 
-# 235
+# 239
 enable_interrupts();
 
-# 250
+# 254
 adcInit();
 
-# 258
+# 262
 while (1) {
 
 
@@ -9989,7 +9996,7 @@ while (1) {
 
 block_on_To_msgqueues();
 
-# 270
+# 274
 length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
 if (length < 0) {
 
@@ -10014,10 +10021,8 @@ break;
 case 42:
 {
 
-# 300
-last_reg_recvd = msgbuffer[length-1];
-msg *tmpPtr = i2c_addressable_registers + last_reg_recvd - 0xA8;
-start_i2c_slave_reply(tmpPtr->length, tmpPtr->data);
+# 308
+start_i2c_slave_reply(ADCBufferLen, ADCbufferI2C);
 
 break;
 };
@@ -10046,14 +10051,12 @@ break;
 case 50:
 {
 
+# 350
+msgbuffer[3] = msgbuffer[0];
+msgbuffer[0] = 3;
+msgbuffer[1] = 1;
 
-
-i2c_addressable_registers[2].data[1] = 0xAA;
-i2c_addressable_registers[2].data[1] = msgbuffer[0];
-i2c_addressable_registers[2].data[2] = msgbuffer[1];
-i2c_addressable_registers[2].length = 3;
-
-ADCON0bits.GODONE = 1;
+FromMainLow_sendmsg(3,50,msgbuffer);
 };
 case 30:
 case 31:

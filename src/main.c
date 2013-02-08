@@ -122,6 +122,10 @@ Something is messed up
 #endif
 
 void main(void) {
+    //Tmp Code
+    unsigned char ADCbufferI2C[8];
+    unsigned char ADCBufferLen;
+
     char c;
     signed char length;
     unsigned char msgtype;
@@ -297,10 +301,12 @@ void main(void) {
                     //
                     // The last byte received is the "register" that is trying to be read
                     // The response is dependent on the register.
-                    last_reg_recvd = msgbuffer[length-1];
-                    msg *tmpPtr = i2c_addressable_registers + last_reg_recvd - 0xA8;
+//                    last_reg_recvd = msgbuffer[length-1];
+/*                    i2cmsg *tmpPtr = i2c_addressable_registers + 2;//(last_reg_recvd - 0xA8);
                     start_i2c_slave_reply(tmpPtr->length, tmpPtr->data);
-                    
+*/
+                    start_i2c_slave_reply(ADCBufferLen, ADCbufferI2C);
+
                     break;
                 };
                 default:
@@ -330,12 +336,22 @@ void main(void) {
                     //unsigned short adcOutput = ((int)msgbuffer[1] << 8) | (int)msgbuffer[0];
 
                     //int k = adcOutput;
-                    i2c_addressable_registers[2].data[1] = 0xAA; // msgtype. 0xAA is ADC message
-                    i2c_addressable_registers[2].data[1] = msgbuffer[0];
-                    i2c_addressable_registers[2].data[2] = msgbuffer[1];
+/*                    i2c_addressable_registers[2].data[0] = 3; // msgtype. 0xAA is ADC message
+                    i2c_addressable_registers[2].data[1] = 1;
+                    i2c_addressable_registers[2].data[2] = msgbuffer[0];
+//                    i2c_addressable_registers[2].data[3] = msgbuffer[1];
                     i2c_addressable_registers[2].length = 3;
+*/
+/*                    ADCbufferI2C[0] = 3;
+                    ADCbufferI2C[1] = 1;
+                    ADCbufferI2C[2] = msgbuffer[0];
+                    ADCBufferLen = 3;
+*/
+                    msgbuffer[3] = msgbuffer[0]; // message data
+                    msgbuffer[0] = 3; // ADC message type
+                    msgbuffer[1] = 1; // message length
 
-                    ADCON0bits.GODONE = 1;
+                    FromMainLow_sendmsg(3,MSG_ADC_DATA,msgbuffer);
                 };
                 case MSGT_OVERRUN:
                 case MSGT_UART_DATA:

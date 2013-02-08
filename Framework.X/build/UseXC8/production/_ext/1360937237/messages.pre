@@ -9701,6 +9701,9 @@ void adcInit();
 # 28
 void adcIntHandler();
 
+# 37
+void adcReadyNextRead();
+
 # 14 "../src/interrupts.h"
 void enable_interrupts(void);
 

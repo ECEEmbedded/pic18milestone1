@@ -27,4 +27,13 @@ void adcInit();
  */
 void adcIntHandler();
 
+/*
+ * ##########################
+ * adcReadyNextRead
+ *  Set GODONE and prepares for next ADC read
+ *  This function can be changed to read from a different pin every time
+ * ##########################
+ */
+void adcReadyNextRead();
+
 #endif

@@ -7539,6 +7539,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
 [; ;adcHelper.h: 20: void adcInit();
 [; ;adcHelper.h: 28: void adcIntHandler();
+[; ;adcHelper.h: 37: void adcReadyNextRead();
 [; ;interrupts.h: 14: void enable_interrupts(void);
 [; ;interrupts.h: 16: int in_high_int(void);
 [; ;interrupts.h: 18: int low_int_active(void);
@@ -7595,7 +7596,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_i2c.h: 38: i2cmsg i2c_addressable_registers[4];
 [; ;my_i2c.h: 40: void init_i2c(i2c_comm *);
 [; ;my_i2c.h: 41: void i2c_int_handler(void);
-[; ;my_i2c.h: 42: void start_i2c_slave_reply(unsigned char length,unsigned char *msg);
+[; ;my_i2c.h: 42: void start_i2c_slave_reply( );
 [; ;my_i2c.h: 43: void i2c_configure_slave(unsigned char);
 [; ;my_i2c.h: 44: void i2c_configure_master(unsigned char);
 [; ;my_i2c.h: 45: unsigned char i2c_master_send(unsigned char,unsigned char *);
@@ -7724,8 +7725,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 1037 ]
 }
 "83
-[v F8193 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerHigh `IF8193 ~T0 @X0 1 e ]
+[v F8192 `(v ~T0 @X0 1 tf ]
+[v _InterruptHandlerHigh `IF8192 ~T0 @X0 1 e ]
 {
 [; ;interrupts.c: 78: interrupt
 [; ;interrupts.c: 83: void InterruptHandlerHigh() {
@@ -7778,8 +7779,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 1040 ]
 }
 "127
-[v F8195 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerLow `ILF8195 ~T0 @X0 1 e ]
+[v F8194 `(v ~T0 @X0 1 tf ]
+[v _InterruptHandlerLow `ILF8194 ~T0 @X0 1 e ]
 {
 [; ;interrupts.c: 122: interrupt low_priority
 [; ;interrupts.c: 127: void InterruptHandlerLow() {

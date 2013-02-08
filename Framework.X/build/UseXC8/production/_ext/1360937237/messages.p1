@@ -7505,6 +7505,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
 [; ;adcHelper.h: 20: void adcInit();
 [; ;adcHelper.h: 28: void adcIntHandler();
+[; ;adcHelper.h: 37: void adcReadyNextRead();
 [; ;interrupts.h: 14: void enable_interrupts(void);
 [; ;interrupts.h: 16: int in_high_int(void);
 [; ;interrupts.h: 18: int low_int_active(void);

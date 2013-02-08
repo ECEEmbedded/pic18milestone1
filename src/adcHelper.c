@@ -32,17 +32,22 @@ void adcInit() {
     PIE1bits.ADIE = 1;
 }
 
+void adcReadyNextRead() {
+    ADCON0bits.GODONE = 1;
+}
+
 void adcIntHandler() {
 
     //ADC output
     unsigned short res  = (short)(ADRESH << 8) | (short)ADRESL;
-    res >>= 6;
-    res = (float)res * (float)0xFFFF / (float)0x3FF;
+//    res >>= 6;
+    unsigned char reading = res >> 8;
+//    res = (float)res * (float)0xFFFF / (float)0x3FF;
 //    res = res / 0xFFC0;  //Normalize 10-bit max
 
 //    unsigned short output = res * (float)0xFFFF;
 
-    ToMainLow_sendmsg(sizeof(short), MSG_ADC_DATA, &res);
+    ToMainLow_sendmsg(sizeof(char), MSG_ADC_DATA, &reading);
 
     //Clear ADC
     PIR1bits.ADIF = 0;
